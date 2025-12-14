@@ -24,7 +24,7 @@ const produtosExemplo = [
         genero: "Unissex",
         cor: "Vermelho", 
         featured: true,
-        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> Ótimo custo-benefício para iniciantes. Usuários elogiam o conforto inicial, mas relatam que a espuma cede após 6 meses de uso intenso. O velcro é resistente e o material sintético é fácil de limpar."
+        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> A campeã do custo-benefício para quem está começando agora. Muito elogiada pelo conforto inicial. <br><em>💡 Dica: Ideal para treinos leves e iniciantes. Para atletas de alta intensidade diária, modelos de densidade superior podem oferecer maior longevidade a longo prazo.</em>"
     },
     { 
         id: 2, 
@@ -40,7 +40,7 @@ const produtosExemplo = [
         genero: "Unissex",
         cor: "Preto/Amarelo",
         featured: true,
-        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> Destaque para a absorção de impacto (Tecnologia HS). Muito elogiada por quem treina pesado. O encaixe da mão é justo e firme. Alguns usuários acharam o material um pouco rígido no começo, mas amacia rápido."
+        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> Focada em proteção máxima (Tecnologia HS). O encaixe é firme e passa muita segurança no soco. <br><em>💡 Dica: O material é robusto e pode parecer firme nos primeiros usos, mas amacia e se molda à sua mão após algumas semanas de 'break-in'.</em>"
     },
     { 
         id: 3, 
@@ -56,7 +56,7 @@ const produtosExemplo = [
         genero: "Unissex",
         cor: "Vermelho",
         featured: true,
-        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> Durabilidade excelente segundo relatos de +1 ano de uso constante. A cor vermelha se mantém viva e as costuras não abrem. É considerada a melhor opção intermediária do mercado atualmente."
+        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> Referência em durabilidade na categoria intermediária. Usuários relatam que as costuras e a cor se mantêm intactas por muito tempo. <br><em>💡 Dica: Excelente equilíbrio entre preço e qualidade profissional. Uma escolha segura para quem treina de 3 a 4 vezes na semana.</em>"
     },
 
     // --- TÊNIS (Categoria: calcados) ---
@@ -79,7 +79,7 @@ const produtosExemplo = [
         fecho: "Cadarço",
         tamanhos: "38-44",
         featured: true,
-        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> O 'cavalo de batalha' da Nike. Extremamente versátil para treinos diários e longas distâncias. Usuários elogiam a durabilidade, mas alguns acham a forma um pouco estreita."
+        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> O tênis mais versátil da Nike. Perfeito para quem intercala caminhadas, treinos de tiro e longas distâncias. <br><em>💡 Dica: A forma da Nike prioriza a estabilidade e é mais justinha. Se você tem o pé muito largo ou prefere folga, considerar um número maior pode garantir conforto extra.</em>"
     },
     { 
         id: 5, 
@@ -100,7 +100,7 @@ const produtosExemplo = [
         fecho: "Cadarço",
         tamanhos: "39-45",
         featured: true,
-        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> Rei do conforto máximo. A sensação é de pisar em nuvens. Ideal para recuperação e rodagens leves. Pode ser pesado para quem busca velocidade em provas curtas."
+        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> Sinônimo de 'pisar nas nuvens'. O amortecimento é o destaque absoluto, protegendo seus joelhos em longões. <br><em>💡 Dica: Focado em máximo conforto e proteção, não em leveza extrema. Ideal para rodagens regenerativas e maratonas, menos indicado para quem busca apenas bater recordes de velocidade curta.</em>"
     },
     { 
         id: 6, 
@@ -121,7 +121,7 @@ const produtosExemplo = [
         fecho: "Cadarço",
         tamanhos: "38-43",
         featured: false,
-        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> Estilo e performance. O retorno de energia é fantástico. O cabedal veste como uma meia. Atenção: solado pode desgastar mais rápido em asfalto muito abrasivo."
+        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> Estilo inconfundível com retorno de energia explosivo. O cabedal veste como uma meia, sem apertar. <br><em>💡 Dica: O solado tem aderência fantástica no asfalto. Para manter essa performance por anos, recomenda-se evitar terrenos muito ásperos ou trilhas de terra batida.</em>"
     },
 
     // --- BOLAS (Categoria: bolas) ---
@@ -144,7 +144,7 @@ const produtosExemplo = [
         fecho: "-",
         tamanhos: "Tamanho 5",
         featured: true,
-        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> Voo preciso e toque macio. Por não ter costuras, não absorve água em dias de chuva, mantendo o peso original. Durabilidade excelente em grama natural."
+        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> Voo preciso e toque profissional. A tecnologia sem costuras impede a absorção de água, mantendo o peso ideal mesmo na chuva. <br><em>💡 Dica: Bola de performance oficial. Para garantir a vida útil, utilize sempre a calibragem recomendada e evite usar em asfalto ou concreto.</em>"
     },
     { 
         id: 8, 
@@ -165,7 +165,7 @@ const produtosExemplo = [
         fecho: "-",
         tamanhos: "Tamanho 5",
         featured: false,
-        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> A bola dos profissionais. As ranhuras na superfície estabilizam o voo em 30%. O preço é alto, mas a qualidade é incomparável para jogos de campeonato."
+        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> A elite do futebol. As ranhuras Aerowsculpt estabilizam o voo em 30%, garantindo que a bola vá exatamente onde você chutou. <br><em>💡 Dica: Um investimento alto para alta performance. Recomendada para jogos de campeonato em grama natural de boa qualidade.</em>"
     },
     { 
         id: 9, 
@@ -186,7 +186,7 @@ const produtosExemplo = [
         fecho: "-",
         tamanhos: "Society",
         featured: true,
-        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> O melhor custo-benefício para a pelada semanal. Muito macia e resistente. Único ponto negativo é que pode perder a cor (descascar pintura) com o tempo."
+        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> A favorita das peladas de Society. Extremamente macia ao chute e com quique controlado. <br><em>💡 Dica: Por ser focada em maciez (Super Soft), é normal que a pintura sofra desgaste estético com o atrito da grama sintética, mas isso não afeta a estrutura ou o desempenho da bola.</em>"
     },
 
     // --- RELÓGIOS (Categoria: relogio) ---
@@ -209,7 +209,7 @@ const produtosExemplo = [
         fecho: "Fivela",
         tamanhos: "42mm",
         featured: true,
-        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> Bateria dura 2 semanas! O GPS é o mais preciso do mercado. Focado em performance pura, sem tela touch colorida, o que alguns consideram 'antigo', mas corredores amam."
+        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> O parceiro ideal do corredor. GPS de precisão militar e bateria que dura semanas, não dias. <br><em>💡 Dica: Focado 100% em esporte e métricas. A tela não é touch-screen propositalmente (para funcionar com suor/chuva), o que agrada puristas mas pode estranhar quem vem de smartwatches casuais.</em>"
     },
     { 
         id: 11, 
@@ -230,7 +230,7 @@ const produtosExemplo = [
         fecho: "Magnético",
         tamanhos: "44mm",
         featured: false,
-        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> Tela AMOLED incrível e muitas funções inteligentes (Spotify, Whatsapp). O monitor de sono é ótimo. O ponto fraco é a bateria que dura apenas 1 ou 2 dias."
+        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> Uma extensão do seu celular no pulso. Tela brilhante, Spotify offline e monitor de sono avançado. <br><em>💡 Dica: É um dispositivo superpotente. Assim como seu smartphone, o ideal é criar o hábito de carregá-lo diariamente (ex: durante o banho) para garantir bateria sempre cheia.</em>"
     },
     { 
         id: 12, 
@@ -251,10 +251,9 @@ const produtosExemplo = [
         fecho: "Fivela",
         tamanhos: "46mm",
         featured: false,
-        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> O equilíbrio perfeito. Bonito para usar no trabalho e eficiente no esporte. O GPS é dual-band (muito bom) e a bateria dura 10 dias. Melhor custo-benefício da categoria."
+        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> Elegância que vai do escritório ao treino. O GPS é muito rápido e a bateria é impressionante (cerca de 10 dias). <br><em>💡 Dica: O sistema Zepp é leve e fluido, focado em eficiência. Embora receba notificações, ele não permite responder mensagens complexas como relógios com WearOS/Apple.</em>"
     }
 ];
-
 /* =========================================
    3. FUNÇÕES DA MODAL DE SELEÇÃO
    ========================================= */
@@ -662,14 +661,24 @@ function renderizarMobileTabs() {
         headerContainer.innerHTML += btnHTML;
 
         // Conteúdo da Aba
-        let iaCardHTML = '';
+       let iaCardHTML = '';
         if (produto.resumoIA) {
             let textoLimpo = produto.resumoIA.replace("✨ <strong>Resumo das Opiniões:</strong>", "");
+            
+            // AQUI ESTÁ A MUDANÇA: Adicionei o footer dentro do template string
             iaCardHTML = `
                 <div class="mobile-ai-card-wrapper" style="margin: 15px 0;">
                     <div class="ai-card">
                         <div class="ai-card-header"><span>✨</span> Destaques</div>
                         <div class="ai-card-body">${textoLimpo}</div>
+                        
+                        <div class="ai-card-footer">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                            </svg>
+                            Resumo de opiniões gerado por IA
+                        </div>
+                        
                     </div>
                 </div>
             `;
