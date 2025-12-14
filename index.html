@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comparador de Produtos - Grifo</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-top">
+        <div class="container">
+          <div class="header-top-left">
+            <span>📞 Acessibilidade</span>
+            <span>📝 Blog | Arena Minotauro</span>
+            <span>🔄 Troca na loja e no site</span>
+          </div>
+          <div class="header-top-right">
+            <span>🛒 Cartão presente</span>
+            <span>💬 Atendimento</span>
+          </div>
+        </div>
+      </div>
+      <div class="header-main">
+        <div class="container">
+          <a href="#" class="logo">
+            <img
+              src="imagens/Minotauro 3.PNG"
+              alt="Logo Minotauro"
+              class="logo-img"
+            />
+          </a>
+          <!--    <a href="#" class="logo"> Grifo </a>-->
+          <div class="search-container">
+            <input
+              type="text"
+              class="search-input"
+              placeholder="o que você procura?"
+            />
+            <button class="search-btn">🔍</button>
+          </div>
+          <div class="header-right">
+            <span>📍 Informe seu CEP</span>
+            <span>👤 Entre ou cadastre-se</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Menu de navegação -->
+    <nav class="nav-menu">
+      <div class="container">
+        <ul class="nav-items">
+          <li><a href="#">Esportes</a></li>
+          <li><a href="#">Homens</a></li>
+          <li><a href="#">Mulheres</a></li>
+          <li><a href="#">Crianças</a></li>
+          <li><a href="#">Calçados</a></li>
+          <li><a href="#">Roupas</a></li>
+          <li><a href="#">Corrida</a></li>
+          <li><a href="#">Futebol</a></li>
+          <li><a href="#">Basquete</a></li>
+          <li><a href="#">Suplementos</a></li>
+          <li><a href="#">Marcas</a></li>
+          <li><a href="#" style="color: #e52d27">Nike</a></li>
+          <li><a href="#" style="color: #e52d27">Outlet</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <div class="container">
+        <a href="#">Minotauro</a> >
+        <a href="#">comparador de produtos</a>
+      </div>
+    </div>
+
+    <!-- Conteúdo principal -->
+    <main class="main-content">
+      <div class="comparador-header">
+        <h1 class="comparador-title">Comparador de Produtos</h1>
+        <p class="comparador-subtitle">
+          Compare especificações, preços e características dos produtos
+          esportivos
+        </p>
+      </div>
+
+      <div class="comparador-container">
+        <div class="comparador-section">
+          <h2 class="section-title">Selecione os produtos para comparar</h2>
+          <div class="produto-selector">
+            <div class="produto-slot" onclick="abrirModalSelecao()">
+              <div class="produto-placeholder" id="slot1">
+                <div>+ Adicionar produto</div>
+                <small>Clique para selecionar</small>
+              </div>
+            </div>
+            <div class="produto-slot" onclick="abrirModalSelecao()">
+              <div class="produto-placeholder" id="slot2">
+                <div>+ Adicionar produto</div>
+                <small>Clique para selecionar</small>
+              </div>
+            </div>
+            <div class="produto-slot" onclick="abrirModalSelecao()">
+              <div class="produto-placeholder" id="slot3">
+                <div>+ Adicionar produto</div>
+                <small>Clique para selecionar</small>
+              </div>
+            </div>
+          </div>
+          <div style="text-align: center">
+            <button class="btn-comparar" onclick="compararProdutos()">
+              Comparar Produtos
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="comparador-section"
+          id="comparacao-resultado"
+          style="display: none"
+        >
+          <h2 class="section-title">Comparação de Produtos</h2>
+          <table class="comparacao-table">
+            <thead>
+              <tr>
+                <th>Especificação</th>
+                <th>Produto 1</th>
+                <th>Produto 2</th>
+                <th>Produto 3</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="spec-category">INFORMAÇÕES GERAIS</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Marca</td>
+                <td id="marca1">-</td>
+                <td id="marca2">-</td>
+                <td id="marca3">-</td>
+              </tr>
+              <tr>
+                <td>Modelo</td>
+                <td id="modelo1">-</td>
+                <td id="modelo2">-</td>
+                <td id="modelo3">-</td>
+              </tr>
+              <tr>
+                <td>Preço</td>
+                <td id="preco1">-</td>
+                <td id="preco2">-</td>
+                <td id="preco3">-</td>
+              </tr>
+
+              <tr class="ai-summary-row">
+                <td>
+                  Opinião dos Clientes <br /><small style="color: #666"
+                    >(Gerado por IA)</small
+                  >
+                </td>
+                <td id="resumo1" class="ai-summary-cell"></td>
+                <td id="resumo2" class="ai-summary-cell"></td>
+                <td id="resumo3" class="ai-summary-cell"></td>
+              </tr>
+              <tr>
+                <td class="spec-category">CARACTERÍSTICAS</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Material</td>
+                <td id="material1">-</td>
+                <td id="material2">-</td>
+                <td id="material3">-</td>
+              </tr>
+              <tr>
+                <td>Peso</td>
+                <td id="peso1">-</td>
+                <td id="peso2">-</td>
+                <td id="peso3">-</td>
+              </tr>
+              <tr>
+                <td>Cor</td>
+                <td id="cor1">-</td>
+                <td id="cor2">-</td>
+                <td id="cor3">-</td>
+              </tr>
+              <tr>
+                <td>Tecnologia</td>
+                <td id="tecnologia1">-</td>
+                <td id="tecnologia2">-</td>
+                <td id="tecnologia3">-</td>
+              </tr>
+              <tr>
+                <td>Tipo de fecho</td>
+                <td id="fecho1">-</td>
+                <td id="fecho2">-</td>
+                <td id="fecho3">-</td>
+              </tr>
+              <tr>
+                <td>Tamanhos disponíveis</td>
+                <td id="tamanhos1">-</td>
+                <td id="tamanhos2">-</td>
+                <td id="tamanhos3">-</td>
+              </tr>
+            </tbody>
+          </table>
+          <div id="mobile-comparison-view" style="display: none">
+            <div class="mobile-tabs-header" id="mobileTabsHeader"></div>
+            <div class="mobile-tabs-content" id="mobileTabsContent"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="productModal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" style="color: #e52d27; font-weight: bold">
+            Selecione um Produto
+          </h3>
+          <button class="modal-close" onclick="fecharModal()">&times;</button>
+        </div>
+        <div id="errorToast" class="error-toast">
+          <div class="toast-content">
+            <div class="error-icon">!</div>
+            <div class="toast-message">
+              <strong>Categorias Diferentes</strong>
+              <span>Selecione produtos do mesmo tipo para comparar.</span>
+            </div>
+          </div>
+        </div>
+        <div class="filter-box-wrapper">
+          <div class="search-modal-container">
+            <input
+              type="text"
+              id="modalSearchInput"
+              placeholder="Buscar produto..."
+              oninput="filtrarProdutos()"
+              onfocus="togglePopularTerms(true)"
+            />
+
+            <button class="search-modal-btn">🔍</button>
+
+            <div
+              id="popularTerms"
+              class="popular-terms-dropdown"
+              style="display: none"
+            >
+              <h4>Termos mais buscados</h4>
+              <ol class="popular-list">
+                <li onclick="selecionarTermoPopular(this)">
+                  <span class="term-number">1</span> Bola de futebol
+                </li>
+                <li onclick="selecionarTermoPopular(this)">
+                  <span class="term-number">2</span> Tenis Nike
+                </li>
+                <li onclick="selecionarTermoPopular(this)">
+                  <span class="term-number">3</span> Asics
+                </li>
+                <li onclick="selecionarTermoPopular(this)">
+                  <span class="term-number">4</span> Relógio
+                </li>
+                <li onclick="selecionarTermoPopular(this)">
+                  <span class="term-number">5</span> Tenis Adidas
+                </li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="filters-row">
+            <div class="filter-item">
+              <label>Esporte</label>
+              <select id="filterEsporte" onchange="aplicarFiltrosAvancados()">
+                <option value="">Todos</option>
+                <option value="Futebol">Futebol</option>
+                <option value="Corrida">Corrida</option>
+                <option value="Artes Marciais">Artes Marciais</option>
+                <option value="Academia">Academia</option>
+              </select>
+            </div>
+
+            <div class="filter-item">
+              <label>Gênero</label>
+              <select id="filterGenero" onchange="aplicarFiltrosAvancados()">
+                <option value="">Todos</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+                <option value="Unissex">Unissex</option>
+              </select>
+            </div>
+
+            <div class="filter-item">
+              <label>Cor</label>
+              <select id="filterCor" onchange="aplicarFiltrosAvancados()">
+                <option value="">Todas as cores</option>
+                <option value="Branco">Branco</option>
+                <option value="Preto">Preto</option>
+                <option value="Vermelho">Vermelho</option>
+                <option value="Amarelo">Amarelo</option>
+                <option value="Laranja">Laranja</option>
+              </select>
+            </div>
+
+            <div class="filter-item">
+              <label>Faixa de Preço</label>
+              <select id="filterPreco" onchange="aplicarFiltrosAvancados()">
+                <option value="">Todos os preços</option>
+                <option value="low">Até R$ 100</option>
+                <option value="mid">R$ 100 - R$ 200</option>
+                <option value="high">Acima de R$ 200</option>
+              </select>
+            </div>
+
+            <div class="filter-item filter-actions">
+              <button class="btn-clear-filters" onclick="limparFiltros()">
+                Limpar Filtros
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="modalProductsContainer" class="modal-products-grid"></div>
+
+        <div class="modal-footer">
+          <button class="btn-cancelar" onclick="fecharModal()">Cancelar</button>
+          <button
+            class="btn-comparar-modal"
+            id="btnCompararModal"
+            onclick="confirmarSelecao()"
+            disabled
+          >
+            Selecionar (Min: 1)
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
