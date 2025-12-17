@@ -9,8 +9,7 @@ const MAX_PRODUTOS = 3;
    2. BASE DE DADOS DE PRODUTOS
    ========================================= */
 const produtosExemplo = [
-    // --- LUVAS DE BOXE (Categoria: equipamentos) ---
-    { 
+       { 
         id: 1, 
         nome: "Luva de Boxe e Muaythai Rhino", 
         marca: "Rhino", 
@@ -23,6 +22,11 @@ const produtosExemplo = [
         esporte: "Artes Marciais",
         genero: "Unissex",
         cor: "Vermelho", 
+        material: "PU Sintético",
+        peso: "12 oz (Padrão)",
+        tecnologia: "Espuma Injetada",
+        fecho: "Velcro Simples",
+        tamanhos: "Único",
         featured: true,
         resumoIA: "✨ <strong>Resumo das Opiniões:</strong> A campeã do custo-benefício para quem está começando agora. Muito elogiada pelo conforto inicial. <br><em>💡 Dica: Ideal para treinos leves e iniciantes. Para atletas de alta intensidade diária, modelos de densidade superior podem oferecer maior longevidade a longo prazo.</em>"
     },
@@ -39,6 +43,11 @@ const produtosExemplo = [
         esporte: "Artes Marciais",
         genero: "Unissex",
         cor: "Preto/Amarelo",
+        material: "PU de Alta Resistência",
+        peso: "14 oz",
+        tecnologia: "HSA Tech (Absorção)",
+        fecho: "Velcro Ajustável",
+        tamanhos: "12-16 oz",
         featured: true,
         resumoIA: "✨ <strong>Resumo das Opiniões:</strong> Focada em proteção máxima (Tecnologia HS). O encaixe é firme e passa muita segurança no soco. <br><em>💡 Dica: O material é robusto e pode parecer firme nos primeiros usos, mas amacia e se molda à sua mão após algumas semanas de 'break-in'.</em>"
     },
@@ -55,6 +64,11 @@ const produtosExemplo = [
         esporte: "Artes Marciais",
         genero: "Unissex",
         cor: "Vermelho",
+        material: "PU de Alta Resistência",
+        peso: "14 oz",
+        tecnologia: "HSA Tech (Absorção)",
+        fecho: "Velcro Ajustável",
+        tamanhos: "12-16 oz",
         featured: true,
         resumoIA: "✨ <strong>Resumo das Opiniões:</strong> Referência em durabilidade na categoria intermediária. Usuários relatam que as costuras e a cor se mantêm intactas por muito tempo. <br><em>💡 Dica: Excelente equilíbrio entre preço e qualidade profissional. Uma escolha segura para quem treina de 3 a 4 vezes na semana.</em>"
     },
