@@ -565,7 +565,12 @@ function limparFiltros() {
     document.getElementById('filterCor').value = "";
     document.getElementById('filterPreco').value = "";
     document.getElementById('modalSearchInput').value = "";
-    filtrarProdutos();
+    
+
+    const produtosEmDestaque = produtosExemplo.filter((p) => p.featured === true);
+    renderizarCards(produtosEmDestaque);
+    
+    togglePopularTerms(false); 
 }
 
 /* =========================================
