@@ -5,80 +5,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Comparador de Produtos - Minotauro</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
   </head>
   <body>
-    <!-- Header -->
+    
     <header class="header">
-      <div class="header-top">
-        <div class="container">
-          <div class="header-top-left">
-            <span>📞 Acessibilidade</span>
-            <span>📝 Blog | Arena Minotauro</span>
-            <span>🔄 Troca na loja e no site</span>
-          </div>
-          <div class="header-top-right">
-            <span>🛒 Cartão presente</span>
-            <span>💬 Atendimento</span>
-          </div>
+        <div class="header-top">
+            <div class="container">
+                <div class="header-links">
+                    <span>📞 Acessibilidade</span>
+                    <span>📝 Blog | Arena Minotauro</span>
+                </div>
+                <div class="header-links">
+                    <span>💬 Atendimento</span>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="header-main">
-        <div class="container">
-          <a href="#" class="logo">
-            <img
-              src="imagens/Minotauro 3.PNG"
-              alt="Logo Minotauro"
-              class="logo-img"
-            />
-          </a>
+        <div class="header-main">
+            <div class="container header-content">
+               <button class="mobile-menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
 
-          <div class="search-container">
-            <input
-              type="text"
-              class="search-input"
-              placeholder="o que você procura?"
-            />
-            <button class="search-btn">🔍</button>
-          </div>
-          <div class="header-right">
-            <span>📍 Informe seu CEP</span>
-            <span>👤 Entre ou cadastre-se</span>
-          </div>
+                <a href="home.html" class="logo">
+                    <img src="imagens/Minotauro 3.PNG" alt="Minotauro" class="logo-img">
+                </a>
+                
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="o que você procura?">
+                    <button class="search-btn">🔍</button>
+                </div>
+<div class="header-icons">
+    
+    <a href="login.html" id="btn-login-header" class="header-item">
+        <i class="fas fa-user"></i> <span>Entrar</span>
+    </a>
+
+    <a href="#" class="header-item"><i class="fas fa-heart"></i> <span>Favoritos</span></a>
+    
+    <a href="#" class="header-item">
+        <i class="fas fa-shopping-cart"></i> 
+        <span id="cart-count" class="cart-badge" style="display:none">0</span>
+        <span>Carrinho</span>
+    </a>
+</div>
+            </div>
         </div>
-      </div>
     </header>
 
-    <!-- Menu de navegação -->
-    <nav class="nav-menu">
-      <div class="container">
-        <ul class="nav-items">
-          <li><a href="#">Esportes</a></li>
-          <li><a href="#">Homens</a></li>
-          <li><a href="#">Mulheres</a></li>
-          <li><a href="#">Crianças</a></li>
-          <li><a href="#">Calçados</a></li>
-          <li><a href="#">Roupas</a></li>
-          <li><a href="#">Corrida</a></li>
-          <li><a href="#">Futebol</a></li>
-          <li><a href="#">Basquete</a></li>
-          <li><a href="#">Suplementos</a></li>
-          <li><a href="#">Marcas</a></li>
-          <li><a href="#" style="color: #e52d27">Nike</a></li>
-          <li><a href="#" style="color: #e52d27">Outlet</a></li>
-        </ul>
-      </div>
+    <nav class="nav-bar" id="navBar">
+        <div class="container">
+            <ul class="nav-list">
+                <li class="dropdown">
+                    <a href="#" class="nav-link">Esportes ▾</a>
+                    <div class="dropdown-content">
+                        <a href="#"><i class="fas fa-running"></i> Corrida</a>
+                        <a href="#"><i class="far fa-futbol"></i> Futebol</a>
+                        <a href="#"><i class="fas fa-dumbbell"></i> Academia</a>
+                        <a href="#"><i class="fas fa-basketball-ball"></i> Basquete</a>
+                        <a href="#"><i class="fas fa-swimmer"></i> Natação</a>
+                        <a href="#"><i class="fas fa-table-tennis"></i> Tênis</a>
+                    </div>
+                </li>
+                <li><a href="#" class="nav-link">Homens</a></li>
+                <li><a href="#" class="nav-link">Mulheres</a></li>
+                <li><a href="#" class="nav-link">Crianças</a></li>
+                <li><a href="#" class="nav-link">Calçados</a></li>
+                <li><a href="#" class="nav-link">Roupas</a></li>
+                
+                <li>
+                    <a href="index.html" id="btn-comparador-menu" class="nav-link link-dourado-brilhante">
+                        ⚡ Comparador IA
+                    </a>
+                </li>
+                
+                <li><a href="#" class="nav-link red-text">Nike</a></li>
+                <li><a href="#" class="nav-link red-text">Outlet</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <!-- Breadcrumb -->
     <div class="breadcrumb">
       <div class="container">
-        <a href="#">Minotauro</a> >
-        <a href="#">comparador de produtos</a>
+        <a href="home.html">Home</a> >
+        <span>Comparador de Produtos</span>
       </div>
     </div>
 
-    <!-- Conteúdo principal -->
     <main class="main-content">
       <div class="comparador-header">
         <h1 class="comparador-title">Comparador de Produtos</h1>
@@ -92,21 +103,26 @@
         <div class="comparador-section">
           <h2 class="section-title">Selecione os produtos para comparar</h2>
           <div class="produto-selector">
-            <div class="produto-slot" onclick="abrirModalSelecao()">
+            <div class="produto-slot">
               <div class="produto-placeholder" id="slot1">
-                <div>+ Adicionar produto</div>
+                <div class="icon-plus">+</div>
+                <div>Adicionar produto</div>
                 <small>Clique para selecionar</small>
               </div>
             </div>
-            <div class="produto-slot" onclick="abrirModalSelecao()">
+
+            <div class="produto-slot">
               <div class="produto-placeholder" id="slot2">
-                <div>+ Adicionar produto</div>
+                <div class="icon-plus">+</div>
+                <div>Adicionar produto</div>
                 <small>Clique para selecionar</small>
               </div>
             </div>
-            <div class="produto-slot" onclick="abrirModalSelecao()">
+
+            <div class="produto-slot">
               <div class="produto-placeholder" id="slot3">
-                <div>+ Adicionar produto</div>
+                <div class="icon-plus">+</div>
+                <div>Adicionar produto</div>
                 <small>Clique para selecionar</small>
               </div>
             </div>
@@ -343,16 +359,16 @@
         </div>
       </div>
     </div>
+    
     <div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+          <div class="vw-plugin-top-wrapper"></div>
+        </div>
     </div>
-  </div>
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-  </script>
-  </body> </html>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
   </body>
 </html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Conta - Minotauro</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="perfil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-main">
+            <div class="container header-content">
+                <a href="home.html" class="logo"><img src="imagens/Minotauro 3.PNG" alt="Minotauro" class="logo-img"></a>
+                <div class="search-container"><input type="text" class="search-input" placeholder="Buscar meus pedidos..."><button class="search-btn">🔍</button></div>
+                <div class="header-icons">
+                    <a href="#" onclick="fazerLogout()" class="header-item"><i class="fas fa-sign-out-alt"></i> <span>Sair</span></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav-bar" id="navBar">
+        <div class="container">
+            <ul class="nav-list">
+                <li class="dropdown"><a href="#" class="nav-link">Esportes ▾</a></li>
+                <li><a href="#" class="nav-link">Homens</a></li>
+                <li><a href="#" class="nav-link">Mulheres</a></li>
+                <li><a href="#" class="nav-link link-dourado-brilhante">⚡ Comparador IA</a></li>
+                <li><a href="#" class="nav-link red-text">Outlet</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="dashboard-wrapper">
+        <div class="container">
+            <div class="dashboard-grid">
+                
+                <aside class="sidebar-col">
+                    <div class="card user-profile-card">
+                        <div class="profile-header-bg"></div>
+                        <div class="profile-avatar-wrapper">
+                            <div class="avatar-circle-large" id="avatar-border">
+                                <img id="user-avatar" src="" alt="Avatar">
+                            </div>
+                        </div>
+                        <div class="profile-basic-info">
+                            <h2 id="user-name">...</h2>
+                            <p class="member-since" id="member-since">...</p>
+                        </div>
+                        <div class="menu-list-vertical">
+                            <a href="#" onclick="navegarPara('geral')" class="menu-item active" id="menu-geral"><i class="fas fa-th-large"></i> Visão Geral</a>
+                            <a href="#" onclick="navegarPara('pedidos')" class="menu-item" id="menu-pedidos"><i class="fas fa-box"></i> Meus Pedidos</a>
+                            <a href="#" onclick="navegarPara('cashback')" class="menu-item" id="menu-cashback"><i class="fas fa-wallet"></i> Cashback</a>
+                            <a href="#" onclick="navegarPara('avaliacoes')" class="menu-item" id="menu-avaliacoes"><i class="fas fa-star"></i> Avaliações <span class="badge-count" id="menu-reviews">0</span></a>
+                            <a href="#" onclick="fazerLogout()" class="menu-item logout"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                        </div>
+                    </div>
+                </aside>
+
+                <main class="content-col">
+                    
+                    <h1 class="welcome-title">Olá, <span id="welcome-name">Atleta</span>! 👋</h1>
+
+                    <div id="view-geral" class="view-section">
+                        
+                        <div class="hero-level-card">
+                            <div class="hero-avatar-area">
+                                <div class="hero-circle">
+                                    <img id="hero-level-badge" src="" alt="Selo Nível">
+                                </div>
+                                <span class="hero-pill" id="hero-pill-level">NÍVEL ?</span>
+                            </div>
+
+                            <div class="hero-info-area">
+                                <div class="hero-top-row">
+                                    <div>
+                                        <span class="hero-label">STATUS DA CONTA</span>
+                                        <h2 class="hero-rank-name" id="hero-rank-name">...</h2>
+                                    </div>
+                                    <div class="next-reward-box">
+                                        <span class="reward-label">Próxima Recompensa:</span>
+                                        <strong class="reward-value" id="next-reward-text">...</strong>
+                                    </div>
+                                </div>
+
+                                <div class="hero-progress-wrapper">
+                                    <div class="progress-texts">
+                                        <span id="points-current">Pontos Atuais: ...</span>
+                                        <span id="points-next">Próximo Nível: ...</span>
+                                    </div>
+                                    <div class="hero-progress-bg">
+                                        <div class="hero-progress-fill" id="hero-progress-bar" style="width: 0%"></div>
+                                    </div>
+                                    <small class="progress-footer" id="points-missing">...</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stats-grid-row">
+                            <div class="card stat-card-new">
+                                <div class="stat-content">
+                                    <span class="stat-label-new">PEDIDOS EM ABERTO</span>
+                                    <strong class="stat-number-new" id="open-orders">0</strong>
+                                    <span class="stat-status-new" id="order-status-text">--</span>
+                                </div>
+                                <div class="stat-icon-right"><i class="fas fa-truck"></i></div>
+                            </div>
+
+                            <div class="card stat-card-new">
+                                <div class="stat-content">
+                                    <span class="stat-label-new">SALDO CASHBACK</span>
+                                    <strong class="stat-number-new green-text" id="dash-cashback">R$ 0,00</strong>
+                                    <span class="stat-status-new">Expira em 30 dias</span>
+                                </div>
+                                <div class="stat-icon-right"><i class="fas fa-coins"></i></div>
+                            </div>
+                        </div>
+
+                        <div class="section-header"><h3>Último Pedido</h3><a href="#" onclick="navegarPara('pedidos')" class="link-view-all">Ver Histórico Completo</a></div>
+                        <div class="card last-order-card">
+                            <div class="order-product-row">
+                                <div class="order-img"><img id="order-img" src="" alt=""></div>
+                                <div class="order-info"><h4 id="order-product-name">...</h4><p id="order-details">...</p></div>
+                                <div class="order-status-actions">
+                                    <div class="order-status-badge" id="order-badge">...</div>
+                                    <button class="btn-outline-small" id="btn-last-order-action">VER DETALHES</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="view-pedidos" class="view-section" style="display: none;">
+                        <h1 class="welcome-title">Meus Pedidos</h1><div id="lista-pedidos-container"></div>
+                    </div>
+                    <div id="view-cashback" class="view-section" style="display: none;">
+                        <h1 class="welcome-title">Cashback Minotauro</h1>
+                        <div class="cashback-hero-card">
+                            <div class="cb-info"><span class="cb-label">SALDO DISPONÍVEL</span><strong class="cb-value" id="page-cashback-value">R$ 0,00</strong></div>
+                            <div class="cb-action"><button class="btn-resgatar-large"><i class="fas fa-ticket-alt"></i> RESGATAR AGORA</button></div>
+                        </div>
+                        <h3 class="subsection-title">Histórico</h3><div class="history-table-container"><table class="history-table"><tbody id="cashback-history-body"></tbody></table></div>
+                    </div>
+                    <div id="view-avaliacoes" class="view-section" style="display: none;">
+                        <h1 class="welcome-title">Avaliações</h1>
+                        <h3 class="subsection-title">Pendentes (<span id="count-pendentes">0</span>)</h3><div id="lista-avaliacoes-pendentes"></div>
+                        <h3 class="subsection-title">Passadas</h3><div id="lista-avaliacoes-passadas"></div>
+                    </div>
+
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <script src="perfil.js"></script>
+</body>
+</html>

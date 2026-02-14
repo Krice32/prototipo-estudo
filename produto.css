@@ -1,0 +1,215 @@
+/* =========================================
+   ESTILOS DA PÁGINA DE PRODUTO (PDP)
+   ========================================= */
+
+.product-container {
+    padding-top: 20px;
+    padding-bottom: 50px;
+    background-color: #fff;
+}
+
+.breadcrumb {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: 80px 1fr 380px; /* Colunas: Thumbnails | Foto Grande | Info */
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+/* 1. Galeria Lateral */
+.gallery-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.thumbnail {
+    width: 80px;
+    height: 80px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 5px;
+}
+.thumbnail:hover, .thumbnail.selected {
+    border-color: #e52d27;
+}
+.thumbnail img { width: 100%; height: 100%; object-fit: contain; }
+
+/* 2. Imagem Principal */
+.main-image-column {
+    border: 1px solid #f0f0f0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 500px;
+}
+.main-image-column img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+.zoom-hint {
+    position: absolute;
+    bottom: 10px;
+    color: #999;
+    font-size: 12px;
+}
+
+/* 3. Painel de Compra */
+.buy-box-column {
+    padding: 10px;
+}
+
+.product-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+.product-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+.stars { color: #ffc107; letter-spacing: 2px; }
+.share-btn { margin-left: auto; color: #e52d27; cursor: pointer; }
+
+/* Preço */
+.price-block { margin-bottom: 25px; }
+.old-price { text-decoration: line-through; color: #999; font-size: 14px; display: block; }
+.current-price-row { display: flex; align-items: baseline; gap: 5px; }
+.currency { font-size: 18px; color: #e52d27; }
+.value { font-size: 32px; font-weight: 800; color: #e52d27; }
+.payment-method { font-size: 14px; color: #333; }
+.discount-tag-pdp {
+    background: #e52d27; color: white;
+    font-size: 12px; padding: 2px 6px; border-radius: 4px; font-weight: bold;
+    align-self: center; margin-left: 5px;
+}
+.installments { font-size: 13px; color: #666; margin-top: 5px; }
+
+/* Seletores */
+.selector-block { margin-bottom: 20px; }
+.selector-block label { display: block; font-size: 14px; margin-bottom: 8px; color: #333; }
+
+.color-options { display: flex; gap: 10px; }
+.color-circle {
+    width: 30px; height: 30px; border-radius: 50%; border: 2px solid #ddd; cursor: pointer;
+    background-color: #333; /* Default */
+}
+.color-circle.selected { border-color: #e52d27; padding: 2px; background-clip: content-box; }
+
+.size-options { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 5px; }
+.size-btn {
+    width: 40px; height: 40px; background: white; border: 1px solid #ddd;
+    border-radius: 4px; cursor: pointer; font-weight: bold; color: #333;
+}
+.size-btn:hover { border-color: #999; }
+.size-btn.selected { border-color: #e52d27; color: #e52d27; background-color: #fff5f5; }
+
+.size-guide { font-size: 12px; color: #666; text-decoration: underline; }
+
+/* Botões de Ação */
+.action-buttons { display: flex; flex-direction: column; gap: 10px; margin-top: 30px; }
+.btn-buy-now {
+    width: 100%; padding: 16px; background: #e52d27; color: white;
+    border: none; border-radius: 6px; font-size: 18px; font-weight: 800;
+    text-transform: uppercase; cursor: pointer; transition: background 0.2s;
+}
+.btn-buy-now:hover { background: #d42620; }
+
+.btn-add-cart {
+    width: 100%; padding: 14px; background: white; color: #e52d27;
+    border: 2px solid #e52d27; border-radius: 6px; font-size: 16px; font-weight: 700;
+    cursor: pointer; transition: all 0.2s;
+}
+.btn-add-cart:hover { background: #fff5f5; }
+
+/* Frete */
+.shipping-calculator { margin-top: 25px; padding: 15px; background: #f9f9f9; border-radius: 8px; }
+.shipping-input-group { display: flex; gap: 10px; margin-top: 5px; }
+.shipping-input-group input { flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+.shipping-input-group button { padding: 8px 15px; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer; }
+.no-cep { font-size: 11px; color: #e52d27; display: block; margin-top: 5px; text-align: right; }
+
+.seller-info { margin-top: 20px; font-size: 12px; color: #666; }
+.trust-badges { display: flex; gap: 15px; margin-top: 10px; font-weight: bold; color: #333; }
+
+/* Descrição e IA */
+.description-section { border-top: 1px solid #eee; padding-top: 30px; }
+.description-section h2 { font-size: 20px; margin-bottom: 20px; color: #333; }
+.description-content { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+
+.ia-highlight-box {
+    background: linear-gradient(135deg, #fffbf0 0%, #fff 100%);
+    border: 1px solid #e3bc3f; border-radius: 8px; padding: 20px;
+}
+.ia-highlight-box h3 { color: #b38728; font-size: 16px; margin-bottom: 10px; }
+.ia-highlight-box p { font-size: 14px; line-height: 1.6; color: #555; }
+
+.tech-specs p { margin-bottom: 8px; font-size: 14px; color: #666; border-bottom: 1px solid #f5f5f5; padding-bottom: 5px;}
+.tech-specs strong { color: #333; min-width: 100px; display: inline-block; }
+
+/* Responsivo Mobile */
+@media (max-width: 900px) {
+    .product-grid { grid-template-columns: 1fr; }
+    .gallery-column { flex-direction: row; order: 2; overflow-x: auto; }
+    .main-image-column { order: 1; height: 300px; }
+    .buy-box-column { order: 3; }
+    .description-content { grid-template-columns: 1fr; }
+}
+/* Estilo do resultado do frete */
+.frete-msg {
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #28a745; /* Verde Sucesso */
+    line-height: 1.4;
+}
+
+.frete-msg .prazo {
+    color: #333;
+    font-weight: normal;
+    display: block;
+    font-size: 12px;
+}
+/* Botão de Comparar na PDP */
+.btn-compare-pdp {
+    width: 100%;
+    padding: 14px;
+    background: transparent;
+    color: #b38728; /* Dourado escuro */
+    border: 2px dashed #b38728; /* Borda tracejada para indicar "ferramenta" */
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.btn-compare-pdp:hover {
+    background: #fffbf0; /* Fundo amarelo bem clarinho */
+    border-style: solid; /* Borda fica sólida no hover */
+    transform: scale(1.02);
+}

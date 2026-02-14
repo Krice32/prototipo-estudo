@@ -1,0 +1,249 @@
+/* =========================================
+   1. CONFIGURAÇÕES GERAIS
+   ========================================= */
+body {
+    background-color: #f5f7fa;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0; padding: 0; color: #333;
+}
+.dashboard-wrapper { padding: 30px 0 60px; min-height: 80vh; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.dashboard-grid { display: grid; grid-template-columns: 280px 1fr; gap: 30px; }
+.card { background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); border: 1px solid #eef2f6; overflow: hidden; }
+
+/* =========================================
+   2. BARRA DE NAVEGAÇÃO (BRANCA - ESTILO HOME)
+   ========================================= */
+.nav-bar {
+    background: #fff; /* Fundo Branco */
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+}
+
+.nav-list {
+    list-style: none; display: flex; gap: 25px; padding: 0; margin: 0; height: 50px; align-items: center;
+}
+
+.nav-link {
+    color: #333; /* Texto Escuro */
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    letter-spacing: 0.5px;
+}
+
+.nav-link:hover { color: #e52d27; } /* Hover Vermelho */
+.link-dourado-brilhante { color: #b8860b; } /* Dourado mais escuro para ler no branco */
+.red-text { color: #e52d27; }
+
+/* Dropdown */
+.dropdown { position: relative; height: 100%; display: flex; align-items: center; }
+.dropdown-content {
+    display: none; position: absolute; top: 50px; left: 0;
+    background-color: white; min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1); z-index: 100; border: 1px solid #eee;
+}
+.dropdown:hover .dropdown-content { display: block; }
+.dropdown-content a { color: #333; padding: 12px 16px; text-decoration: none; display: block; font-size: 12px; }
+.dropdown-content a:hover { background-color: #f9f9f9; color: #e52d27; }
+
+
+/* =========================================
+   3. SIDEBAR (PERFIL)
+   ========================================= */
+.user-profile-card { text-align: center; padding-bottom: 10px; margin-bottom: 20px; }
+.profile-header-bg { height: 90px; background-color: #1a1a1a; width: 100%; }
+.profile-avatar-wrapper { margin-top: -50px; display: flex; justify-content: center; position: relative; margin-bottom: 10px; }
+.avatar-circle-large {
+    width: 100px; height: 100px; background: white; border-radius: 50%;
+    border: 5px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); overflow: hidden;
+}
+.avatar-circle-large img { width: 100%; height: 100%; object-fit: cover; }
+.profile-basic-info h2 { font-size: 18px; font-weight: 800; color: #333; margin-bottom: 4px; }
+.profile-basic-info .member-since { font-size: 12px; color: #888; margin-bottom: 20px; }
+
+.level-status-box { background-color: #f8f9fa; margin: 0 20px 20px; padding: 15px; border-radius: 8px; text-align: left; }
+.level-info-row { display: flex; justify-content: space-between; margin-bottom: 8px; align-items: center; }
+.label-small { font-size: 10px; font-weight: 700; color: #999; text-transform: uppercase; }
+.level-name-highlight { font-size: 12px; font-weight: 800; color: #333; }
+.progress-bar-container { height: 6px; background: #e0e0e0; border-radius: 3px; overflow: hidden; margin-bottom: 8px; }
+.progress-bar-fill { height: 100%; background: #e52d27; transition: width 1s; }
+.points-helper { font-size: 10px; color: #888; }
+
+.menu-list-vertical { display: flex; flex-direction: column; text-align: left; }
+.menu-item { padding: 14px 20px; color: #555; font-size: 14px; font-weight: 600; text-decoration: none; border-left: 3px solid transparent; display: flex; align-items: center; gap: 12px; transition: 0.2s; }
+.menu-item:hover, .menu-item.active { background: #fff5f5; color: #e52d27; border-left-color: #e52d27; }
+.menu-item i { width: 20px; text-align: center; }
+.menu-item.logout { border-top: 1px solid #f0f0f0; color: #999; margin-top: 10px; }
+.menu-item.logout:hover { color: #e52d27; }
+.badge-cash { margin-left: auto; background: #e8f5e9; color: #2e7d32; font-size: 11px; padding: 2px 8px; border-radius: 10px; }
+.badge-count { margin-left: auto; background: #e52d27; color: white; font-size: 10px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+
+/* =========================================
+   4. DASHBOARD - HERO CARD (AVATAR MAIOR)
+   ========================================= */
+.welcome-title { font-size: 26px; color: #333; margin-bottom: 20px; }
+
+.hero-level-card {
+    background: #1a1a1a;
+    border-radius: 12px; padding: 30px; color: white;
+    display: flex; align-items: center; gap: 35px; /* Aumentado gap */
+    margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    position: relative; overflow: hidden;
+}
+
+/* Lado Esquerdo: Selo do Nível (AUMENTADO) */
+.hero-avatar-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 140px;
+    position: relative; /* Importante para o z-index funcionar */
+}
+
+/* O Círculo da Medalha */
+.hero-circle {
+    width: 120px;
+    height: 120px;
+    background-color: #fff; /* Fundo branco para a imagem */
+    border-radius: 50%;
+    
+    /* Borda Dourada Brilhante */
+    border: 4px solid #ffd700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); /* Glow Dourado */
+    
+    /* Centraliza a imagem */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Garante que nada saia do círculo (Corta os cantos da imagem quadrada) */
+    overflow: hidden; 
+    
+    position: relative;
+    z-index: 10; /* Fica atrás da pílula */
+    margin-bottom: -14px; /* Sobe a pílula para sobrepor */
+}
+
+/* A Imagem do Touro */
+.hero-circle img {
+    width: 100%; 
+    height: 100%;
+    object-fit: cover; /* Preenche todo o espaço, cortando excessos */
+    object-position: center;
+}
+
+/* A Pílula "NÍVEL 3" */
+.hero-pill {
+    background: #e0e0e0;
+    color: #333;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    
+    padding: 6px 16px;
+    border-radius: 20px;
+    
+    /* Borda para destacar do fundo preto e da medalha */
+    border: 2px solid #1a1a1a; 
+    
+    position: relative;
+    z-index: 20; /* Fica NA FRENTE da medalha */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+/* Info e Progresso */
+.hero-info-area { flex: 1; }
+.hero-top-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+.hero-label { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #888; display: block; margin-bottom: 2px; }
+.hero-rank-name { font-size: 36px; /* Fonte maior */ font-weight: 900; font-style: italic; color: white; margin: 0; line-height: 1; text-transform: uppercase; }
+
+.next-reward-box { background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 6px; text-align: right; border: 1px solid rgba(255,255,255,0.1); }
+.reward-label { display: block; font-size: 9px; color: #ccc; }
+.reward-value { font-size: 13px; color: #ffd700; font-weight: 700; }
+
+.progress-texts { display: flex; justify-content: space-between; font-size: 11px; color: #aaa; margin-bottom: 5px; font-weight: 600; }
+.hero-progress-bg { width: 100%; height: 14px; background: #333; border-radius: 7px; overflow: hidden; margin-bottom: 5px; border: 1px solid #444; }
+.hero-progress-fill { height: 100%; background: linear-gradient(90deg, #ff4b1f 0%, #ff9068 100%); border-radius: 7px; transition: width 1s ease; }
+.progress-footer { font-size: 10px; color: #777; }
+
+
+/* =========================================
+   5. ESTATÍSTICAS E CONTEÚDO
+   ========================================= */
+.stats-grid-row { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px; }
+.stat-card-new { background: white; padding: 25px; border-radius: 12px; border: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+.stat-content { display: flex; flex-direction: column; }
+.stat-label-new { font-size: 10px; font-weight: 800; color: #999; text-transform: uppercase; margin-bottom: 5px; }
+.stat-number-new { font-size: 28px; font-weight: 800; color: #333; line-height: 1.1; }
+.stat-status-new { font-size: 12px; color: #28a745; font-weight: 600; margin-top: 5px; }
+.stat-icon-right { font-size: 30px; color: #f0f0f0; }
+.green-text { color: #28a745; }
+
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.section-header h3 { font-size: 16px; color: #333; margin: 0; }
+.link-view-all { font-size: 12px; color: #e52d27; font-weight: 700; text-decoration: none; }
+
+.last-order-card { padding: 25px; }
+.order-product-row { display: flex; align-items: center; gap: 20px; }
+.order-img { width: 70px; height: 70px; border-radius: 8px; background: #f9f9f9; padding: 5px; display: flex; align-items: center; justify-content: center; border: 1px solid #eee; }
+.order-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.order-info { flex: 1; }
+.order-info h4 { font-size: 16px; color: #333; margin-bottom: 4px; }
+.order-details { font-size: 12px; color: #888; }
+.order-status-actions { text-align: right; }
+.order-status-badge { background: #e8f5e9; color: #2e7d32; padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 800; text-transform: uppercase; display: inline-block; margin-bottom: 10px; }
+.btn-outline-small { background: white; border: 1px solid #ddd; color: #555; padding: 8px 15px; border-radius: 4px; font-size: 11px; font-weight: 700; cursor: pointer; text-transform: uppercase; }
+.btn-outline-small:hover { border-color: #333; color: #333; }
+
+/* ABAS ESPECÍFICAS */
+.full-order-card { background: white; border: 1px solid #eef2f6; border-radius: 8px; margin-bottom: 20px; overflow: hidden; }
+.order-header { background: #fcfcfc; border-bottom: 1px solid #f0f0f0; padding: 15px 20px; display: flex; justify-content: space-between; font-size: 11px; color: #666; text-transform: uppercase; font-weight: 600; }
+.order-header strong { color: #333; margin-left: 5px; }
+.order-body { padding: 20px; }
+.status-tracker { margin-top: 15px; margin-bottom: 20px; }
+.status-text { font-weight: 700; font-size: 13px; margin-bottom: 5px; display: block; }
+.status-bar-bg { height: 6px; width: 100%; background: #e0e0e0; border-radius: 3px; }
+.status-bar-fill { height: 100%; background: #00a650; border-radius: 3px; }
+.order-buttons-row { display: flex; gap: 10px; border-top: 1px solid #f5f5f5; padding-top: 15px; margin-top: 15px; }
+.btn-solid-red { flex: 1; background: #e52d27; color: white; border: none; padding: 12px; border-radius: 4px; font-weight: 800; cursor: pointer; text-transform: uppercase; font-size: 13px; }
+.btn-outline-gray { flex: 1; background: white; border: 1px solid #ccc; color: #555; padding: 12px; border-radius: 4px; font-weight: 800; cursor: pointer; text-transform: uppercase; font-size: 13px; }
+.btn-outline-gray:hover { background: #f9f9f9; }
+
+.cashback-hero-card { background: #1a1a1a; background-image: radial-gradient(circle at right, #2a2a2a 0%, #1a1a1a 50%); border-radius: 12px; padding: 30px; color: white; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin-bottom: 30px; }
+.cb-label { font-size: 11px; color: #aaa; font-weight: 700; letter-spacing: 1px; }
+.cb-value { font-size: 42px; font-weight: 800; display: block; margin: 5px 0; }
+.btn-resgatar-large { background: #28a745; color: white; border: none; padding: 15px 30px; border-radius: 6px; font-weight: 800; font-size: 14px; cursor: pointer; text-transform: uppercase; box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4); }
+.history-table-container { border: 1px solid #eee; border-radius: 8px; overflow: hidden; background: white; }
+.history-table { width: 100%; border-collapse: collapse; }
+.history-table th { background: #f9f9f9; padding: 15px; text-align: left; font-size: 11px; color: #999; font-weight: 800; }
+.history-table td { padding: 15px; font-size: 13px; border-bottom: 1px solid #f5f5f5; }
+.val-positive { color: #28a745; font-weight: 700; }
+.val-negative { color: #dc3545; font-weight: 700; }
+
+.alert-box-yellow { background: #fff9db; border: 1px solid #ffe066; padding: 15px; border-radius: 6px; display: flex; gap: 15px; color: #856404; font-size: 13px; margin-bottom: 25px; align-items: center; }
+.alert-box-yellow i { font-size: 20px; }
+.review-item-card { background: white; border: 1px solid #eee; border-radius: 8px; padding: 20px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+.review-product-info { display: flex; gap: 15px; align-items: center; }
+.review-img-box { width: 50px; height: 50px; background: #f9f9f9; border-radius: 6px; display: flex; align-items: center; justify-content: center; padding: 5px; }
+.review-img-box img { max-width: 100%; max-height: 100%; }
+.review-texts h4 { font-size: 14px; margin-bottom: 4px; color: #333; }
+.review-texts p { font-size: 11px; color: #999; margin: 0; }
+.review-stars { color: #ffc107; font-size: 14px; letter-spacing: 2px; margin-right: 15px; }
+.btn-black-small { background: #222; color: white; padding: 8px 20px; border-radius: 4px; font-weight: 800; font-size: 11px; cursor: pointer; text-transform: uppercase; border: none; }
+.status-evaluated { color: #28a745; font-weight: 700; font-size: 11px; display: flex; align-items: center; gap: 5px; }
+.empty-state-box { padding: 40px; text-align: center; color: #ccc; border: 2px dashed #eee; border-radius: 8px; }
+.empty-state-box i { font-size: 30px; margin-bottom: 10px; display: block; }
+
+/* RESPONSIVO */
+@media (max-width: 900px) {
+    .dashboard-grid { grid-template-columns: 1fr; }
+    .stats-grid-row { grid-template-columns: 1fr; }
+    .hero-level-card { flex-direction: column; text-align: center; }
+    .hero-top-row { flex-direction: column; gap: 10px; align-items: center; }
+    .nav-list { display: none; } 
+}

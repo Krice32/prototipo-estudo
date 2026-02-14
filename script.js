@@ -9,7 +9,7 @@ const MAX_PRODUTOS = 3;
    2. BASE DE DADOS DE PRODUTOS
    ========================================= */
 const produtosExemplo = [
-       { 
+    { 
         id: 1, 
         nome: "Luva de Boxe e Muaythai Rhino", 
         marca: "Rhino", 
@@ -72,8 +72,7 @@ const produtosExemplo = [
         featured: true,
         resumoIA: "✨ <strong>Resumo das Opiniões:</strong> Referência em durabilidade na categoria intermediária. Usuários relatam que as costuras e a cor se mantêm intactas por muito tempo. <br><em>💡 Dica: Excelente equilíbrio entre preço e qualidade profissional. Uma escolha segura para quem treina de 3 a 4 vezes na semana.</em>"
     },
-
-    // --- TÊNIS (Categoria: calcados) ---
+    // --- TÊNIS ---
     { 
         id: 4, 
         nome: "Tênis Nike Air Zoom Pegasus 40", 
@@ -137,8 +136,7 @@ const produtosExemplo = [
         featured: false,
         resumoIA: "✨ <strong>Resumo das Opiniões:</strong> Estilo inconfundível com retorno de energia explosivo. O cabedal veste como uma meia, sem apertar. <br><em>💡 Dica: O solado tem aderência fantástica no asfalto. Para manter essa performance por anos, recomenda-se evitar terrenos muito ásperos ou trilhas de terra batida.</em>"
     },
-
-    // --- BOLAS (Categoria: bolas) ---
+    // --- BOLAS ---
     { 
         id: 7, 
         nome: "Bola Futebol Campo Adidas Al Rihla", 
@@ -202,8 +200,7 @@ const produtosExemplo = [
         featured: true,
         resumoIA: "✨ <strong>Resumo das Opiniões:</strong> A favorita das peladas de Society. Extremamente macia ao chute e com quique controlado. <br><em>💡 Dica: Por ser focada em maciez (Super Soft), é normal que a pintura sofra desgaste estético com o atrito da grama sintética, mas isso não afeta a estrutura ou o desempenho da bola.</em>"
     },
-
-    // --- RELÓGIOS (Categoria: relogio) ---
+    // --- RELÓGIOS ---
     { 
         id: 10, 
         nome: "Relógio Garmin Forerunner 55", 
@@ -268,14 +265,57 @@ const produtosExemplo = [
         resumoIA: "✨ <strong>Resumo das Opiniões:</strong> Elegância que vai do escritório ao treino. O GPS é muito rápido e a bateria é impressionante (cerca de 10 dias). <br><em>💡 Dica: O sistema Zepp é leve e fluido, focado em eficiência. Embora receba notificações, ele não permite responder mensagens complexas como relógios com WearOS/Apple.</em>"
     }
 ];
+
 /* =========================================
    3. FUNÇÕES DA MODAL DE SELEÇÃO
    ========================================= */
 
+// Função auxiliar para criar o HTML do card (Evita repetição)
+function gerarCardHTML(produto) {
+    const isSelected = produtosSelecionadosModal.some(p => p.id === produto.id);
+    
+    let precoNum = parseFloat(produto.preco.replace('R$', '').replace(',', '.').trim());
+    let precoOrigNum = parseFloat(produto.precoOriginal.replace('R$', '').replace(',', '.').trim());
+    
+    let descontoHTML = '';
+    let precoOriginalHTML = '';
+
+    if (precoOrigNum > precoNum) {
+        const porcentagem = Math.round(((precoOrigNum - precoNum) / precoOrigNum) * 100);
+        descontoHTML = `<span class="discount-badge">-${porcentagem}%</span>`;
+        precoOriginalHTML = `<span class="original-price">${produto.precoOriginal}</span>`;
+    }
+
+    const estrelas = '★'.repeat(Math.floor(produto.nota)) + '☆'.repeat(5 - Math.floor(produto.nota));
+
+    return `
+        <div class="product-card-modal ${isSelected ? 'selected-for-comp' : ''}" 
+             data-product-id="${produto.id}" 
+             onclick="toggleSelecaoProduto(${produto.id})">
+            
+            <img src="${produto.imagem}" alt="${produto.nome}">
+            <span class="card-brand">${produto.marca}</span>
+            <div class="produto-name">${produto.nome}</div>
+            
+            <div class="card-rating">
+                <span>${estrelas}</span>
+                <span class="rating-count">(${produto.avaliacoes})</span>
+            </div>
+
+            <div class="price-container">
+                <span class="current-price">${produto.preco}</span>
+                ${descontoHTML}
+                ${precoOriginalHTML}
+            </div>
+        </div>
+    `;
+}
+
+// Renderiza a lista padrão (usada na busca e filtro)
 function renderizarCards(listaDeProdutos) {
     const container = document.getElementById('modalProductsContainer');
+    if (!container) return; 
     
-    // Verifica se há resultados para exibir
     if (listaDeProdutos.length === 0) {
         container.innerHTML = `
             <div class="no-results-container">
@@ -293,50 +333,95 @@ function renderizarCards(listaDeProdutos) {
     }
 
     let htmlContent = '';
-
     listaDeProdutos.forEach(produto => {
-        const isSelected = produtosSelecionadosModal.some(p => p.id === produto.id);
-        
-        // Formatação de preço e cálculo de desconto
-        let precoNum = parseFloat(produto.preco.replace('R$', '').replace(',', '.').trim());
-        let precoOrigNum = parseFloat(produto.precoOriginal.replace('R$', '').replace(',', '.').trim());
-        
-        let descontoHTML = '';
-        let precoOriginalHTML = '';
-
-        if (precoOrigNum > precoNum) {
-            const porcentagem = Math.round(((precoOrigNum - precoNum) / precoOrigNum) * 100);
-            descontoHTML = `<span class="discount-badge">-${porcentagem}%</span>`;
-            precoOriginalHTML = `<span class="original-price">${produto.precoOriginal}</span>`;
-        }
-
-        const estrelas = '★'.repeat(Math.floor(produto.nota)) + '☆'.repeat(5 - Math.floor(produto.nota));
-
-        htmlContent += `
-            <div class="product-card-modal ${isSelected ? 'selected-for-comp' : ''}" 
-                 data-product-id="${produto.id}" 
-                 onclick="toggleSelecaoProduto(${produto.id})">
-                
-                <img src="${produto.imagem}" alt="${produto.nome}">
-                <span class="card-brand">${produto.marca}</span>
-                <div class="produto-name">${produto.nome}</div>
-                
-                <div class="card-rating">
-                    <span>${estrelas}</span>
-                    <span class="rating-count">(${produto.avaliacoes})</span>
-                </div>
-
-                <div class="price-container">
-                    <span class="current-price">${produto.preco}</span>
-                    ${descontoHTML}
-                    ${precoOriginalHTML}
-                </div>
-            </div>
-        `;
+        htmlContent += gerarCardHTML(produto);
     });
 
     container.innerHTML = htmlContent;
     atualizarBotaoCompararModal();
+}
+
+function abrirModalSelecao() {
+  // --- CORREÇÃO: Força o fechamento do tutorial ao abrir a modal ---
+  const tutorial = document.querySelector('.tutorial-popover');
+  if (tutorial) {
+      tutorial.remove(); // Remove o balão do HTML imediatamente
+      localStorage.setItem("visto_tutorial_comparador", "true"); // Garante que não volte
+  }
+  // ----------------------------------------------------------------
+
+  // 1. Prepara a lista: Filtra nulos
+  produtosSelecionadosModal = produtosSelecionados.filter((p) => p !== null);
+  
+  // 2. Exibe Modal e limpa busca
+  document.getElementById("productModal").style.display = "block";
+  document.getElementById("modalSearchInput").value = "";
+
+  const container = document.getElementById('modalProductsContainer');
+  const tituloModal = document.querySelector('.modal-title');
+  const produtoReferencia = produtosSelecionados.find(p => p !== null);
+
+  if (produtoReferencia) {
+      // --- LÓGICA DE SUGESTÃO ---
+
+      // A. Pega produtos da MESMA categoria
+      const sugestoes = produtosExemplo.filter(p => 
+          p.categoria === produtoReferencia.categoria
+      );
+
+      // B. Ordena: Produto já selecionado vai para o TOPO
+      sugestoes.sort((a, b) => {
+          const aSelected = produtosSelecionadosModal.some(sel => sel.id === a.id);
+          const bSelected = produtosSelecionadosModal.some(sel => sel.id === b.id);
+          if (aSelected && !bSelected) return -1;
+          if (!aSelected && bSelected) return 1;
+          return 0;
+      });
+
+      // C. Pega o restante (Outras categorias)
+      const gerais = produtosExemplo.filter(p => 
+          p.categoria !== produtoReferencia.categoria && 
+          p.featured === true
+      );
+
+      // D. Título do Cabeçalho da Modal (Topo vermelho)
+      if(tituloModal) {
+          tituloModal.innerHTML = `Gerenciar Comparação`;
+      }
+
+      // E. Constrói o HTML com as Seções Internas
+      let htmlFinal = '';
+
+      // SEÇÃO 1: TÍTULO IGUAL AO PRINT
+      if (sugestoes.length > 0) {
+          // Formata categoria (ex: "calcados" -> "Calcados")
+          const catNome = produtoReferencia.categoria.charAt(0).toUpperCase() + produtoReferencia.categoria.slice(1);
+          
+          htmlFinal += `
+            <h4 class="modal-section-title">
+                <span>✨</span> Sugestões de ${catNome}
+            </h4>
+          `;
+          
+          sugestoes.forEach(p => { htmlFinal += gerarCardHTML(p); });
+      }
+
+      // SEÇÃO 2: Outros Produtos
+      if (gerais.length > 0) {
+          htmlFinal += `<h4 class="modal-section-title"><span>📦</span> Outras Categorias</h4>`;
+          gerais.forEach(p => { htmlFinal += gerarCardHTML(p); });
+      }
+
+      container.innerHTML = htmlFinal;
+
+  } else {
+      // CENÁRIO: TUDO VAZIO
+      const destaques = produtosExemplo.filter(p => p.featured === true);
+      if(tituloModal) tituloModal.innerHTML = `Selecione um <span style="color: #e52d27">Produto</span>`;
+      renderizarCards(destaques);
+  }
+  
+  atualizarBotaoCompararModal();
 }
 
 function toggleSelecaoProduto(idProduto) {
@@ -344,28 +429,27 @@ function toggleSelecaoProduto(idProduto) {
   const index = produtosSelecionadosModal.findIndex((p) => p.id === idProduto);
   const cardElement = document.querySelector(`.product-card-modal[data-product-id="${idProduto}"]`);
 
-  // Remove se já estiver selecionado
+  // Se já está selecionado, remove
   if (index > -1) {
     produtosSelecionadosModal.splice(index, 1);
-    cardElement.classList.remove("selected-for-comp");
+    if(cardElement) cardElement.classList.remove("selected-for-comp");
     atualizarBotaoCompararModal();
     return; 
   }
 
-  // Verifica compatibilidade de categoria
+  // Verifica categoria
   if (produtosSelecionadosModal.length > 0) {
       const primeiroProduto = produtosSelecionadosModal[0];
-
       if (primeiroProduto.categoria !== produto.categoria) {
           mostrarErroToast(); 
           return; 
       }
   }
 
-  // Verifica limite máximo
+  // Verifica limite
   if (produtosSelecionadosModal.length < MAX_PRODUTOS) {
     produtosSelecionadosModal.push(produto);
-    cardElement.classList.add("selected-for-comp");
+    if(cardElement) cardElement.classList.add("selected-for-comp");
   } else {
     alert(`Você pode selecionar no máximo ${MAX_PRODUTOS} produtos.`);
   }
@@ -375,11 +459,10 @@ function toggleSelecaoProduto(idProduto) {
 
 function mostrarErroToast() {
     const toast = document.getElementById("errorToast");
-    toast.classList.add("show");
-    
-    setTimeout(() => {
-        toast.classList.remove("show");
-    }, 3000);
+    if(toast) {
+        toast.classList.add("show");
+        setTimeout(() => { toast.classList.remove("show"); }, 5000);
+    }
 }
 
 function atualizarBotaoCompararModal() {
@@ -393,14 +476,6 @@ function atualizarBotaoCompararModal() {
     btn.disabled = true;
     btn.textContent = `Selecionar (Min: 1)`;
   }
-}
-
-function abrirModalSelecao() {
-  produtosSelecionadosModal = produtosSelecionados.filter((p) => p !== null);
-  document.getElementById("productModal").style.display = "block";
-  const produtosEmDestaque = produtosExemplo.filter((p) => p.featured === true);
-  renderizarCards(produtosEmDestaque);
-  document.getElementById("modalSearchInput").value = "";
 }
 
 function fecharModal() {
@@ -420,39 +495,28 @@ function normalizarTexto(texto) {
 
 function filtrarProdutos() {
   const inputBusca = document.getElementById("modalSearchInput").value;
-  
-  // 1. Normaliza o texto (tira acentos e põe minúsculo)
   let termoLimpo = normalizarTexto(inputBusca);
-
-
   termoLimpo = termoLimpo.replace(/\b(de|da|do|das|dos|em|com|para|e|a|o|u)\b/g, " ");
-
   const palavrasChave = termoLimpo.split(" ").filter(palavra => palavra.length > 0);
 
   let produtosFiltrados;
 
   if (palavrasChave.length > 0) {
     togglePopularTerms(false);
-    
     produtosFiltrados = produtosExemplo.filter((produto) => {
- 
-      const textoProduto = normalizarTexto(
-          `${produto.nome} ${produto.esporte} ${produto.marca} ${produto.categoria}`
-      );
- 
+      const textoProduto = normalizarTexto(`${produto.nome} ${produto.esporte} ${produto.marca} ${produto.categoria}`);
       return palavrasChave.every(palavra => textoProduto.includes(palavra));
     });
-
   } else {
-    // Se apagou tudo, mostra os destaques
     togglePopularTerms(true);
     produtosFiltrados = produtosExemplo.filter((p) => p.featured === true);
   }
   
+  // Na busca, usamos renderizarCards padrão (lista única)
   renderizarCards(produtosFiltrados);
 }
 
-// Eventos de clique para fechar modais
+// Fechar modal ao clicar fora
 window.onclick = function (event) {
   const modal = document.getElementById("productModal");
   if (event.target == modal) fecharModal();
@@ -469,17 +533,30 @@ document.addEventListener("mousedown", function (event) {
 });
 
 /* =========================================
-   4. FUNÇÕES DOS SLOTS PRINCIPAIS
+   4. FUNÇÕES DOS SLOTS (CORRIGIDO)
    ========================================= */
 
 function renderizarSlotsPrincipais() {
     for (let i = 0; i < MAX_PRODUTOS; i++) {
         const slotId = 'slot' + (i + 1);
         const slotElement = document.getElementById(slotId);
-        const produto = produtosSelecionados[i]; 
-        const slotPai = slotElement.parentElement; 
+        if(!slotElement) continue;
 
+        const produto = produtosSelecionados[i]; 
+        const slotPai = slotElement.parentElement; // div.produto-slot
+        
+        // Limpa estado anterior visual do slot pai
+        slotPai.classList.remove('selected', 'suggestion-active');
+        
         if (produto) {
+            // SE TEM PRODUTO: 
+            // 1. Remove clique do pai (para não abrir modal ao clicar no card)
+            slotPai.onclick = null; 
+            slotPai.classList.add('selected'); 
+            
+            // 2. Remove a classe placeholder para habilitar os cliques (CORREÇÃO AQUI)
+            slotElement.classList.remove('produto-placeholder');
+
             slotElement.innerHTML = `
                 <div class="produto-card-wrapper">
                     <img src="${produto.imagem}" alt="${produto.nome}" class="produto-image">
@@ -492,16 +569,20 @@ function renderizarSlotsPrincipais() {
                     </div>
                 </div>
             `;
-            slotPai.classList.add('selected'); 
         } else {
-            slotElement.innerHTML = `
-                <div class="produto-placeholder">
-                    <div class="icon-plus">+</div>
-                    <div>Adicionar produto</div>
-                    <small>Clique para selecionar</small>
-                </div>
-            `;
+            // SE ESTÁ VAZIO: 
+            // 1. Clique no pai abre a modal
+            slotPai.onclick = abrirModalSelecao;
             slotPai.classList.remove('selected'); 
+
+            // 2. Adiciona a classe placeholder de volta para estilizar o "+" (CORREÇÃO AQUI)
+            slotElement.classList.add('produto-placeholder');
+
+            slotElement.innerHTML = `
+                <div class="icon-plus">+</div>
+                <div>Adicionar produto</div>
+                <small>Clique para selecionar</small>
+            `;
         }
     }
 }
@@ -517,7 +598,7 @@ function confirmarSelecao() {
 }
 
 function removerProduto(event, slotIndex) {
-  event.stopPropagation();
+  if(event) event.stopPropagation();
   produtosSelecionados[slotIndex] = null;
   renderizarSlotsPrincipais();
   compararProdutos();
@@ -566,9 +647,8 @@ function limparFiltros() {
     document.getElementById('filterPreco').value = "";
     document.getElementById('modalSearchInput').value = "";
     
-
-    const produtosEmDestaque = produtosExemplo.filter((p) => p.featured === true);
-    renderizarCards(produtosEmDestaque);
+    // Reseta para a visualização dividida se houver produto referência
+    abrirModalSelecao();
     
     togglePopularTerms(false); 
 }
@@ -580,6 +660,7 @@ function limparFiltros() {
 function compararProdutos() {
     const produtosParaComparar = produtosSelecionados.filter(p => p !== null);
     const secaoResultados = document.getElementById("comparacao-resultado");
+    if(!secaoResultados) return;
     
     if (produtosParaComparar.length < 2) {
         secaoResultados.style.display = "none";
@@ -618,10 +699,11 @@ function compararProdutos() {
             document.getElementById(`fecho${colNum}`).textContent = produto.fecho || '-';
             document.getElementById(`tamanhos${colNum}`).textContent = produto.tamanhos || '-';
         } else {
-            // Limpa coluna se não houver produto
+            // Limpa coluna
             document.getElementById(`marca${colNum}`).textContent = '-';
             document.getElementById(`preco${colNum}`).textContent = '-';
-            document.getElementById(`resumo${colNum}`).innerHTML = '';
+            const resumoElem = document.getElementById(`resumo${colNum}`);
+            if(resumoElem) resumoElem.innerHTML = '';
             document.getElementById(`material${colNum}`).textContent = '-';
             document.getElementById(`peso${colNum}`).textContent = '-';
             document.getElementById(`cor${colNum}`).textContent = '-';
@@ -631,11 +713,9 @@ function compararProdutos() {
         }
     }
     
-    // Renderiza Abas (Mobile)
     renderizarMobileTabs();
-
     secaoResultados.style.display = "block";
-    document.getElementById("comparacao-resultado").scrollIntoView({ behavior: 'smooth' });
+    secaoResultados.scrollIntoView({ behavior: 'smooth' });
 }
 
 /* =========================================
@@ -654,10 +734,8 @@ function renderizarMobileTabs() {
     const produtosValidos = produtosSelecionados.filter(p => p !== null);
 
     produtosValidos.forEach((produto, index) => {
-
         let precoNum = parseFloat(produto.preco.replace('R$', '').replace(',', '.').trim());
         let precoOrigNum = parseFloat(produto.precoOriginal.replace('R$', '').replace(',', '.').trim());
-        
         let promoHTML = '';
         
         if (precoOrigNum > precoNum) {
@@ -670,7 +748,6 @@ function renderizarMobileTabs() {
             `;
         }
 
-        // Cabeçalho da Aba
         const btnHTML = `
             <div class="tab-btn ${index === 0 ? 'active' : ''}" onclick="switchMobileTab(${index})">
                 <img src="${produto.imagem}" alt="${produto.nome}">
@@ -679,25 +756,20 @@ function renderizarMobileTabs() {
         `;
         headerContainer.innerHTML += btnHTML;
 
-        // Conteúdo da Aba
-       let iaCardHTML = '';
+        let iaCardHTML = '';
         if (produto.resumoIA) {
             let textoLimpo = produto.resumoIA.replace("✨ <strong>Resumo das Opiniões:</strong>", "");
-            
-            // AQUI ESTÁ A MUDANÇA: Adicionei o footer dentro do template string
             iaCardHTML = `
                 <div class="mobile-ai-card-wrapper" style="margin: 15px 0;">
                     <div class="ai-card">
                         <div class="ai-card-header"><span>✨</span> Destaques</div>
                         <div class="ai-card-body">${textoLimpo}</div>
-                        
                         <div class="ai-card-footer">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
                             </svg>
                             Resumo de opiniões gerado por IA
                         </div>
-                        
                     </div>
                 </div>
             `;
@@ -705,14 +777,11 @@ function renderizarMobileTabs() {
 
         const contentHTML = `
             <div class="mobile-product-detail ${index === 0 ? 'active' : ''}" id="mob-tab-${index}">
-                
                 <div class="mobile-price-block">
                     <div class="mobile-main-price">${produto.preco}</div>
                     ${promoHTML}
                 </div>
-                
                 ${iaCardHTML}
-
                 <div class="mobile-spec-item"><span class="mobile-spec-label">Marca</span><span class="mobile-spec-value">${produto.marca}</span></div>
                 <div class="mobile-spec-item"><span class="mobile-spec-label">Material</span><span class="mobile-spec-value">${produto.material}</span></div>
                 <div class="mobile-spec-item"><span class="mobile-spec-label">Peso</span><span class="mobile-spec-value">${produto.peso}</span></div>
@@ -730,4 +799,405 @@ function switchMobileTab(index) {
     document.querySelectorAll('.mobile-product-detail').forEach(content => content.classList.remove('active'));
     document.querySelectorAll('.tab-btn')[index].classList.add('active');
     document.getElementById(`mob-tab-${index}`).classList.add('active');
+}
+
+/* =========================================
+   8. PÁGINA DE PRODUTO + CARRINHO + INTEGRAÇÃO
+   ========================================= */
+
+// --- A. Lógica da Página de Detalhes (produto.html) ---
+function carregarPaginaProduto() {
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id'));
+    const produto = produtosExemplo.find(p => p.id === id);
+
+    if (!produto) {
+        document.querySelector('.product-container').innerHTML = '<h2>Produto não encontrado :(</h2><a href="home.html">Voltar</a>';
+        return;
+    }
+
+    // Preenchimento de Textos
+    document.title = `${produto.nome} - Minotauro`;
+    document.getElementById('detalhe-nome').textContent = produto.nome;
+    document.getElementById('detalhe-preco').textContent = produto.preco.replace('R$', '').trim();
+    if(produto.precoOriginal) {
+        const elOld = document.getElementById('detalhe-preco-antigo');
+        if(elOld) elOld.textContent = produto.precoOriginal;
+    }
+    document.getElementById('bread-categoria').textContent = produto.categoria || 'Esportes';
+    document.getElementById('bread-nome').textContent = produto.nome;
+
+    // Imagens
+    const imgPrincipal = document.getElementById('main-img');
+    if(imgPrincipal) {
+        imgPrincipal.src = produto.imagem;
+        imgPrincipal.alt = produto.nome;
+    }
+    for(let i=1; i<=4; i++) {
+        const thumb = document.getElementById(`thumb-${i}`);
+        if(thumb) thumb.src = produto.imagem;
+    }
+    document.querySelectorAll('.thumbnail').forEach(thumb => {
+        thumb.addEventListener('click', function() {
+            document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('selected'));
+            this.classList.add('selected');
+            if(imgPrincipal) imgPrincipal.src = this.querySelector('img').src;
+        });
+    });
+
+    // Cor
+    const elemCor = document.getElementById('detalhe-cor');
+    if(elemCor) elemCor.textContent = produto.cor;
+    const corPreview = document.getElementById('cor-preview');
+    if(corPreview) {
+        const coresMap = { 'Vermelho': '#e52d27', 'Preto': '#222', 'Branco': '#eee', 'Azul': '#0056b3', 'Verde': '#28a745', 'Amarelo': '#ffc107', 'Laranja': '#fd7e14' };
+        const corEncontrada = Object.keys(coresMap).find(key => produto.cor && produto.cor.includes(key));
+        corPreview.style.backgroundColor = corEncontrada ? coresMap[corEncontrada] : '#999';
+    }
+
+    // Descrição e IA
+    const elemIA = document.getElementById('detalhe-ia-desc');
+    if (elemIA) {
+        elemIA.innerHTML = produto.resumoIA || "Análise em processamento pela IA do Minotauro...";
+    }
+    const specsContainer = document.getElementById('detalhe-specs');
+    if(specsContainer) {
+        specsContainer.innerHTML = `
+            <p><strong>Marca:</strong> ${produto.marca}</p>
+            <p><strong>Categoria:</strong> ${produto.esporte || produto.categoria}</p>
+            <p><strong>Material:</strong> ${produto.material}</p>
+            <p><strong>Tecnologia:</strong> ${produto.tecnologia || 'Padrão'}</p>
+            <p><strong>Peso:</strong> ${produto.peso || 'N/A'}</p>
+        `;
+    }
+
+    // Interações: Tamanho
+    const botoesTamanho = document.querySelectorAll('.size-btn');
+    botoesTamanho.forEach(btn => {
+        btn.addEventListener('click', function() {
+            botoesTamanho.forEach(b => b.classList.remove('selected'));
+            this.classList.add('selected');
+        });
+    });
+
+    // Interações: Calculadora de Frete
+    const btnCalc = document.getElementById('btn-calc-frete');
+    const inputCep = document.getElementById('cep-input');
+    const resultadoFrete = document.getElementById('frete-resultado');
+
+    if(btnCalc && inputCep && resultadoFrete) {
+        btnCalc.addEventListener('click', function() {
+            const cep = inputCep.value.replace(/\D/g, '');
+            if (cep.length !== 8) {
+                resultadoFrete.innerHTML = '<span style="color:red">CEP inválido. Digite 8 números.</span>';
+                return;
+            }
+            const precoFrete = (Math.random() * (45 - 15) + 15).toFixed(2).replace('.', ',');
+            const diasFrete = Math.floor(Math.random() * (12 - 3) + 3);
+            resultadoFrete.innerHTML = `Frete: R$ ${precoFrete} <span style="color:#666">(Econômico)</span> <span class="prazo">Chega em até <strong>${diasFrete} dias úteis</strong></span>`;
+        });
+    }
+
+    // Interação: Botão de Compra (Carrinho)
+    const btnAddCart = document.querySelector('.btn-add-cart');
+    const btnBuyNow = document.querySelector('.btn-buy-now');
+    if(btnAddCart) btnAddCart.addEventListener('click', () => adicionarAoCarrinho(produto));
+    if(btnBuyNow) btnBuyNow.addEventListener('click', () => {
+        adicionarAoCarrinho(produto);
+        setTimeout(() => alert('Redirecionando para o Checkout...'), 500);
+    });
+
+    // Ativa Integração com Comparador
+    configurarBotaoComparar(produto.id);
+}
+
+
+// --- B. Integração Botão Comparar -> Home (Automático) ---
+function configurarBotaoComparar(produtoId) {
+    const btnComparar = document.getElementById('btn-comparar-auto');
+    
+    if (btnComparar) {
+        btnComparar.addEventListener('click', function() {
+            
+            // --- A MÁGICA ESTÁ AQUI ---
+            let listaNova = [produtoId]; 
+            
+            localStorage.setItem('minotauro_comparador', JSON.stringify(listaNova));
+
+            this.innerHTML = 'Carregando Comparador... 🤖';
+            this.style.background = '#b38728';
+            this.style.color = 'white';
+
+            setTimeout(() => {
+                window.location.href = 'index.html'; 
+            }, 500);
+        });
+    }
+}
+
+// --- C. Sistema de Carrinho Inteligente (LocalStorage + Toast) ---
+
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // 1. Atualiza bolinha do carrinho
+    atualizarContadorCarrinho();
+
+    // 2. Cria container de toasts se não existir
+    if (!document.getElementById('toast-container')) {
+        const toastContainer = document.createElement('div');
+        toastContainer.id = 'toast-container';
+        document.body.appendChild(toastContainer);
+    }
+
+    // 3. Se estiver na página do COMPARADOR (verifica se existe o slot1)
+    if (document.getElementById('slot1')) {
+        const listaIds = JSON.parse(localStorage.getItem('minotauro_comparador'));
+        
+        // Se tiver produtos na memória, carrega eles nas variáveis
+        if (listaIds && listaIds.length > 0) {
+            listaIds.forEach((id, index) => {
+                const p = produtosExemplo.find(x => x.id === id);
+                if (p) produtosSelecionados[index] = p;
+            });
+            compararProdutos();
+        }
+        renderizarSlotsPrincipais();
+    }
+});
+
+function adicionarAoCarrinho(produto) {
+    let carrinho = JSON.parse(localStorage.getItem('minotauro_carrinho')) || [];
+    carrinho.push(produto);
+    localStorage.setItem('minotauro_carrinho', JSON.stringify(carrinho));
+    
+    atualizarContadorCarrinho();
+    mostrarToast(produto.nome);
+}
+
+function atualizarContadorCarrinho() {
+    const carrinho = JSON.parse(localStorage.getItem('minotauro_carrinho')) || [];
+    const badge = document.getElementById('cart-count');
+    if(badge) {
+        badge.textContent = carrinho.length;
+        badge.style.display = carrinho.length > 0 ? 'flex' : 'none';
+    }
+}
+
+function mostrarToast(nomeProduto) {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.innerHTML = `
+        <div class="toast-icon">✅</div>
+        <div class="toast-content">
+            <strong>Adicionado ao carrinho!</strong>
+            <span>${nomeProduto}</span>
+        </div>
+    `;
+    container.appendChild(toast);
+    setTimeout(() => { toast.remove(); }, 3000);
+}
+
+/* =========================================
+   FUNÇÃO DE LIMPEZA (RESET)
+   ========================================= */
+function limparTudo() {
+    produtosSelecionados = [null, null, null];
+    localStorage.removeItem('minotauro_comparador');
+    renderizarSlotsPrincipais();
+    compararProdutos(); 
+    alert("Comparador limpo com sucesso!");
+}
+/* =========================================
+   9. SISTEMA DE ONBOARDING (TUTORIAL AVANÇADO)
+   ========================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // --- 1. CONFIGURAÇÃO DA HOME (Botão Comparador) ---
+    // Verifica se estamos na home pela presença do Slider
+    const isHomePage = document.querySelector('.hero-slider'); 
+    const btnComparadorMenu = document.getElementById("btn-comparador-menu");
+
+    // Só executa se for Home, tiver o botão e o usuário nunca tiver visto
+    if (isHomePage && btnComparadorMenu && !localStorage.getItem("visto_tutorial_home")) {
+        setTimeout(() => {
+            criarPopover({
+                alvo: btnComparadorMenu,
+                titulo: "Nova IA do Minotauro",
+                texto: "Compare produtos lado a lado e deixe nossa Inteligência Artificial analisar qual é o melhor para você! 🤖",
+                badge: "NOVIDADE",
+                idStorage: "visto_tutorial_home",
+                // Novos parâmetros para o botão
+                botaoTexto: "Vamos lá!",
+                botaoLink: "index.html"
+            });
+        }, 1500);
+    }
+
+    // --- 2. CONFIGURAÇÃO DO COMPARADOR (Slots) ---
+    const slot1 = document.getElementById("slot1");
+    // Verifica se existe slot (estamos no comparador) e se nunca viu
+    if (slot1 && !localStorage.getItem("visto_tutorial_comparador")) {
+        setTimeout(() => {
+            criarPopover({
+                alvo: slot1.parentElement, 
+                titulo: "Comece sua comparação",
+                texto: "Clique no cartão tracejado para adicionar o primeiro produto.",
+                badge: "DICA",
+                idStorage: "visto_tutorial_comparador"
+                // Sem botão aqui, pois é apenas informativo
+            });
+        }, 1000);
+    }
+});
+
+// --- Função Genérica Inteligente ---
+function criarPopover({ alvo, titulo, texto, badge, idStorage, botaoTexto, botaoLink }) {
+    if (!alvo) return;
+
+    // Remove anteriores
+    const antigo = document.querySelector('.tutorial-popover');
+    if (antigo) antigo.remove();
+
+    // 1. Constrói o HTML (Incluindo botão opcional)
+    const btnHtml = botaoTexto 
+        ? `<button class="popover-action-btn">${botaoTexto}</button>` 
+        : '';
+
+    const popover = document.createElement("div");
+    popover.className = "tutorial-popover";
+    popover.innerHTML = `
+        <div class="tutorial-arrow"></div>
+        <div class="popover-header">
+            <div class="popover-title-group">
+                <span class="popover-badge">${badge}</span>
+                <h4 class="popover-title">${titulo}</h4>
+            </div>
+            <button class="popover-close">&times;</button>
+        </div>
+        <p class="popover-text">${texto}</p>
+        ${btnHtml}
+    `;
+    document.body.appendChild(popover);
+
+    // 2. Lógica de Fechamento
+    function fecharDefinitivamente() {
+        if (!popover.classList.contains("visible")) return;
+        popover.classList.remove("visible");
+        localStorage.setItem(idStorage, "true"); // Grava que viu
+        setTimeout(() => popover.remove(), 400);
+        document.removeEventListener("click", verificarCliqueFora);
+        window.removeEventListener("resize", fecharDefinitivamente);
+    }
+
+    // Evento do Botão de Ação ("Vamos lá!")
+    if (botaoTexto) {
+        const btnAction = popover.querySelector('.popover-action-btn');
+        btnAction.onclick = (e) => {
+            e.stopPropagation(); // Impede que o clique feche antes de redirecionar
+            fecharDefinitivamente();
+            if (botaoLink) window.location.href = botaoLink;
+        };
+    }
+
+    // Evento de Fechar (X)
+    popover.querySelector(".popover-close").onclick = (e) => {
+        e.stopPropagation();
+        fecharDefinitivamente();
+    };
+
+    // Fecha ao clicar fora
+    function verificarCliqueFora(e) {
+        if (!popover.contains(e.target) && !alvo.contains(e.target)) {
+            fecharDefinitivamente();
+        }
+    }
+    setTimeout(() => { document.addEventListener("click", verificarCliqueFora); }, 100);
+    window.addEventListener("resize", fecharDefinitivamente);
+
+
+    // 3. Matemática de Posicionamento (Correção do "Visual Quebrado")
+    const rect = alvo.getBoundingClientRect();
+    const scrollY = window.scrollY || window.pageYOffset;
+    
+    // Vertical: Abaixo do elemento + 15px
+    let top = rect.bottom + scrollY + 15; 
+    
+    // Horizontal: Tenta centralizar
+    let popoverWidth = 280; // Largura definida no CSS (width + padding)
+    let left = rect.left + (rect.width / 2) - (popoverWidth / 2);
+
+    // Proteção contra estouro de tela (Direita)
+    if (left + popoverWidth > window.innerWidth - 20) {
+        left = window.innerWidth - popoverWidth - 20;
+    }
+    // Proteção contra estouro de tela (Esquerda)
+    if (left < 20) {
+        left = 20;
+    }
+
+    // Ajuste fino da SETA para apontar sempre para o centro do elemento
+    // Posição da seta relativa ao balão = (Centro do Alvo) - (Borda esquerda do balão) - (Metade da seta)
+    let arrowLeft = (rect.left + rect.width / 2) - left - 8; 
+    
+    // Aplica posições
+    popover.style.top = `${top}px`;
+    popover.style.left = `${left}px`;
+    
+    const arrow = popover.querySelector('.tutorial-arrow');
+    arrow.style.left = `${arrowLeft}px`;
+
+    // Mostra
+    requestAnimationFrame(() => {
+        popover.classList.add("visible");
+    });
+}
+
+/* =========================================
+   GERENCIAMENTO DE SESSÃO GLOBAL (HEADER)
+   ========================================= */
+document.addEventListener("DOMContentLoaded", () => {
+    verificarSessaoHeader();
+});
+
+function verificarSessaoHeader() {
+    // 1. Pega os dados salvos no login
+    const userId = localStorage.getItem("minotauro_user_id");
+    const userName = localStorage.getItem("minotauro_user_name"); // Certifique-se que o login.html salva isso!
+    
+    // 2. Busca o botão "Entrar" no HTML (presente na Home e Index)
+    const btnLogin = document.getElementById("btn-login-header");
+    const headerIcons = document.querySelector(".header-icons");
+
+    if (btnLogin && userId) {
+        // --- CENÁRIO: USUÁRIO LOGADO ---
+        
+        // A. Muda o botão Entrar para "Olá, [Nome]"
+        btnLogin.href = "perfil.html";
+        // Pega só o primeiro nome se houver
+        const primeiroNome = userName ? userName.split(' ')[0] : 'Atleta';
+        btnLogin.innerHTML = `<i class="fas fa-user-circle"></i> <span>Olá, ${primeiroNome}</span>`;
+        btnLogin.style.opacity = "1";
+        
+        // B. Cria o botão "Sair" ao lado, se ainda não existir
+        if (!document.getElementById("btn-header-logout")) {
+            const btnLogout = document.createElement("a");
+            btnLogout.id = "btn-header-logout";
+            btnLogout.className = "header-item";
+            btnLogout.href = "#";
+            btnLogout.innerHTML = `<i class="fas fa-sign-out-alt"></i> <span>Sair</span>`;
+            
+            // Lógica de Logout
+            btnLogout.onclick = function(e) {
+                e.preventDefault();
+                localStorage.removeItem("minotauro_user_id");
+                localStorage.removeItem("minotauro_user_name");
+                window.location.href = "login.html";
+            };
+            
+            // Adiciona na barra
+            headerIcons.appendChild(btnLogout);
+        }
+    } 
 }

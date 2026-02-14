@@ -1,0 +1,555 @@
+/* =========================================
+   1. GERAL & TIPOGRAFIA
+   ========================================= */
+:root {
+    --primary-red: #e52d27;
+    --dark-red: #d42620;
+    --black: #111;
+    --gray: #f5f5f5;
+    --text-color: #333;
+    --gold-dark: #B8860B; /* Dourado Escuro Sólido */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #fff; 
+    color: #333;
+    overflow-x: hidden; 
+    -webkit-font-smoothing: antialiased;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* =========================================
+   2. HEADER (ESTILO CLÁSSICO MINOTAURO)
+   ========================================= */
+.header {
+  background-color: var(--primary-red);
+  color: white;
+  padding: 10px 0;
+  position: relative;
+  z-index: 100;
+}
+
+.header-top {
+  background-color: var(--dark-red);
+  padding: 5px 0;
+  font-size: 12px;
+}
+
+.header-top .container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-links span { margin-right: 20px; opacity: 0.9; }
+
+.header-main { padding: 15px 0; }
+.header-content { display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+
+/* Logo Original (Sem filtro) */
+.logo-img { 
+    height: 70px; 
+    width: auto; 
+    display: block; 
+}
+
+/* Busca (Estilo Arredondado) */
+.search-container { flex: 1; max-width: 600px; position: relative; }
+.search-input { 
+    width: 100%; padding: 12px 50px 12px 20px; 
+    border: none; border-radius: 25px; 
+    font-size: 14px; outline: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.search-btn { 
+    position: absolute; right: 15px; top: 50%; transform: translateY(-50%); 
+    border: none; background: none; color: var(--primary-red); cursor: pointer; font-size: 16px;
+}
+
+/* Ícones de Ação */
+.header-icons { display: flex; gap: 25px; align-items: center; font-size: 13px; font-weight: 500; }
+.header-item { 
+    display: flex; flex-direction: column; align-items: center; gap: 3px; 
+    cursor: pointer; color: white; transition: 0.2s; 
+}
+.header-item i { font-size: 20px; }
+.header-item:hover { opacity: 0.8; }
+
+/* Menu Mobile (Botão Hambúrguer) */
+.mobile-menu-btn { display: none; background: none; border: none; font-size: 24px; cursor: pointer; color: white; }
+
+/* =========================================
+   3. NAVEGAÇÃO (CLEAN & CENTRALIZADA)
+   ========================================= */
+.nav-bar { 
+    background-color: white; 
+    border-bottom: 1px solid #ddd; 
+    padding: 0; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.nav-list { 
+    display: flex; 
+    gap: 30px; 
+    list-style: none; 
+    flex-wrap: wrap; 
+    align-items: center;
+    justify-content: center; /* Centraliza itens */
+    padding: 15px 0;
+}
+
+.nav-link { 
+    text-decoration: none; 
+    color: #333; 
+    font-weight: 600; 
+    font-size: 14px; 
+    text-transform: uppercase;
+    transition: color 0.3s;
+    padding: 5px 0;
+    display: block;
+    position: relative;
+}
+
+.nav-link:hover, .red-text { color: var(--primary-red); }
+
+/* =========================================
+   DROPDOWN DE ESPORTES (ESTILO COM ÍCONES)
+   ========================================= */
+.dropdown { position: relative; }
+
+.dropdown-content {
+    display: none; 
+    position: absolute; 
+    top: 100%; 
+    left: 0;
+    background-color: #fff; 
+    min-width: 350px; /* Mais largo para caber 2 colunas */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    z-index: 200; 
+    border-top: 3px solid var(--primary-red); 
+    border-radius: 0 0 4px 4px;
+    padding: 20px;
+    
+    /* Layout em Grade (2 Colunas) */
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+/* Ao passar o mouse, vira Grid */
+.dropdown:hover .dropdown-content { 
+    display: grid; 
+    animation: fadeIn 0.3s ease; 
+}
+
+.dropdown-content a {
+    color: #555; 
+    padding: 10px; 
+    text-decoration: none; 
+    display: flex; /* Alinha ícone e texto */
+    align-items: center;
+    gap: 12px; /* Espaço entre ícone e texto */
+    font-size: 13px; 
+    font-weight: 700; /* Texto mais negrito igual ao print */
+    text-transform: uppercase;
+    border-radius: 4px;
+    transition: 0.2s;
+    border-bottom: none; /* Removemos a linha antiga */
+}
+
+/* Estilo do Ícone */
+.dropdown-content a i {
+    color: var(--primary-red); /* Ícone Vermelho */
+    font-size: 16px;
+    width: 20px; /* Largura fixa para alinhar textos */
+    text-align: center;
+}
+
+/* Hover no item */
+.dropdown-content a:hover { 
+    background-color: #fff5f5; /* Fundo rosinha claro */
+    color: var(--primary-red); 
+    padding-left: 15px; /* Pequeno movimento para direita */
+}
+
+/* Animação suave */
+@keyframes fadeIn { 
+    from { opacity: 0; transform: translateY(10px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+
+/* Ajuste Mobile: Dropdown volta a ser lista simples */
+@media (max-width: 900px) {
+    .dropdown:hover .dropdown-content { 
+        display: block; 
+        position: static; 
+        box-shadow: none; 
+        border: none; 
+        padding-left: 20px; 
+    }
+    .dropdown-content a {
+        border-bottom: 1px solid #f9f9f9;
+        font-weight: normal;
+    }
+}
+/* BOTÃO COMPARADOR (Cor Sólida Dourado Escuro) */
+.link-dourado-brilhante {
+    color: var(--gold-dark) !important;
+    font-weight: 800 !important;
+    text-decoration: none;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    animation: none;
+    transition: all 0.3s ease;
+}
+
+.link-dourado-brilhante:hover {
+    color: #8B6508 !important; /* Tom mais escuro no hover */
+    transform: scale(1.05);
+}
+
+/* =========================================
+   4. SLIDER (GRANDE IMPACTO)
+   ========================================= */
+.hero-slider { 
+    position: relative; 
+    height: 550px; 
+    overflow: hidden; 
+    background: #000; 
+    margin-bottom: 40px;
+}
+.slider-container { height: 100%; width: 100%; }
+
+.slide {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover; background-position: center;
+    display: flex; align-items: center; 
+    opacity: 0; transition: opacity 1s ease-in-out;
+}
+.slide.active { opacity: 1; z-index: 1; }
+
+.slide::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0) 100%);
+}
+
+.hero-content { 
+    position: relative; z-index: 2; color: white; 
+    margin-left: 10%; max-width: 550px; 
+    animation: slideUp 0.8s ease-out forwards;
+}
+@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+.hero-content h1 { 
+    font-size: 4rem; 
+    line-height: 0.95; font-weight: 900; 
+    text-transform: uppercase; margin: 20px 0; font-style: italic;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+.tag-hero { background: #ffd700; color: #000; padding: 6px 12px; font-weight: 800; text-transform: uppercase; font-size: 13px; letter-spacing: 1px; }
+.btn-hero { 
+    display: inline-block; background: var(--primary-red); color: white; 
+    padding: 15px 40px; font-weight: bold; border-radius: 4px; margin-top: 25px; 
+    transition: 0.3s; font-size: 16px; text-transform: uppercase;
+}
+.btn-hero:hover { background: white; color: var(--primary-red); }
+
+.prev-slide, .next-slide {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: transparent; color: rgba(255,255,255,0.5); border: none; 
+    padding: 20px; cursor: pointer; z-index: 10; font-size: 30px;
+    transition: 0.3s;
+}
+.prev-slide:hover, .next-slide:hover { color: white; transform: translateY(-50%) scale(1.2); }
+.prev-slide { left: 20px; }
+.next-slide { right: 20px; }
+
+/* =========================================
+   5. CATEGORIAS
+   ========================================= */
+.categories-section { padding: 40px 0; text-align: center; }
+.section-title { font-size: 1.8rem; font-weight: 800; text-transform: uppercase; margin-bottom: 40px; color: #333; position: relative; display: inline-block; }
+.section-title::after { content: ''; display: block; width: 60px; height: 4px; background: var(--primary-red); margin: 8px auto 0; }
+
+.cat-grid { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+.cat-item { display: flex; flex-direction: column; align-items: center; gap: 15px; transition: 0.3s; cursor: pointer; }
+.cat-circle {
+    width: 120px; height: 120px; border-radius: 50%; background: #fff; border: 1px solid #eee;
+    display: flex; align-items: center; justify-content: center; overflow: hidden; transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+.cat-circle img { width: 60%; height: 60%; object-fit: contain; filter: grayscale(100%); transition: 0.3s; }
+.cat-name { font-weight: 700; font-size: 14px; color: #555; text-transform: uppercase; }
+
+.cat-item:hover .cat-circle { border-color: var(--primary-red); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(229, 45, 39, 0.2); }
+.cat-item:hover img { filter: grayscale(0); transform: scale(1.1); }
+.cat-item:hover .cat-name { color: var(--primary-red); }
+
+/* =========================================
+   6. OFERTA RELÂMPAGO & CARDS
+   ========================================= */
+.flash-sale { background-color: #111; padding: 60px 0; color: white; margin: 60px 0; }
+.flash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+.flash-title { display: flex; align-items: center; gap: 20px; }
+.flash-title h2 { font-size: 2rem; margin: 0; font-weight: 800; font-style: italic; color: white; }
+.timer-box { font-size: 1.8rem; font-weight: 800; font-family: monospace; color: #fff; background: #222; padding: 10px 20px; border-radius: 8px; border: 1px solid #333; }
+.view-all-link { color: #888; font-size: 13px; text-decoration: underline; }
+
+.flash-grid, .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
+
+/* --- CARD DE PRODUTO (DESIGN CLEAN) --- */
+.product-card {
+    background: white; 
+    border: 1px solid #f0f0f0; 
+    border-radius: 8px; 
+    overflow: hidden; 
+    position: relative;
+    transition: all 0.3s ease; 
+    display: flex; 
+    flex-direction: column; 
+    text-align: left;
+    height: 100%; 
+    cursor: pointer;
+}
+
+.product-card:hover { 
+    transform: translateY(-5px); 
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+    border-color: transparent;
+}
+
+.img-wrapper { 
+    height: 240px; 
+    padding: 30px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    background: #fff; 
+    position: relative;
+}
+
+.img-wrapper img { max-width: 90%; max-height: 90%; object-fit: contain; transition: transform 0.4s ease; }
+.product-card:hover .img-wrapper img { transform: scale(1.08); }
+
+.p-info { 
+    padding: 15px 20px 25px 20px; 
+    display: flex; flex-direction: column; flex: 1; 
+    background: white; justify-content: flex-end; 
+}
+
+.p-cat { font-size: 11px; text-transform: capitalize; color: #888; font-weight: 500; margin-bottom: 5px; display: block; }
+.p-info h3 { font-size: 15px; color: #222; margin-bottom: 15px; line-height: 1.4; font-weight: 700; min-height: 42px; }
+
+/* Preço */
+.p-price { margin-top: auto; display: flex; align-items: flex-end; gap: 5px; flex-wrap: wrap; }
+
+/* 1. Regra Geral: Esconde preço antigo (Para os Destaques ficarem clean) */
+.p-price .old { display: none; }
+
+/* 2. Regra Específica: Mostra preço antigo nas Ofertas Relâmpago */
+.flash-grid .p-price .old { 
+    display: block; 
+    font-size: 13px; text-decoration: line-through; 
+    color: #999; font-weight: 500; width: 100%; margin-bottom: 0; 
+}
+
+.p-price .new { 
+    font-size: 26px; font-weight: 900; color: #e52d27; 
+    letter-spacing: -0.5px; line-height: 1; 
+}
+
+/* Botão Eu Quero */
+.btn-card-action {
+    position: absolute; bottom: 20px; left: 20px; right: 20px;
+    width: calc(100% - 40px); background: #111; color: white; border: none; 
+    padding: 12px; font-weight: 800; border-radius: 4px; cursor: pointer; 
+    opacity: 0; transform: translateY(10px); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    text-transform: uppercase; font-size: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.product-card:hover .btn-card-action { opacity: 1; transform: translateY(0); }
+.btn-card-action:hover { background: var(--primary-red); transform: translateY(-2px); }
+
+.tag-off { position: absolute; top: 15px; left: 15px; background: var(--primary-red); color: white; padding: 4px 8px; font-weight: 800; font-size: 12px; border-radius: 4px; z-index: 5; }
+
+/* BANNER DESAFIO */
+.challenge-banner {
+    background: linear-gradient(135deg, #e0e0e0 0%, #f9f9f9 100%); padding: 60px; 
+    border-radius: 12px; margin: 60px 0; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: space-between;
+}
+.challenge-text h2 { font-size: 3rem; font-weight: 900; line-height: 0.9; font-style: italic; color: #111; margin-bottom: 15px; }
+.challenge-text p { color: #555; margin-bottom: 30px; font-size: 1.1rem; }
+.btn-challenge { border: 2px solid #111; background: transparent; padding: 12px 35px; font-weight: 800; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
+.btn-challenge:hover { background: #111; color: white; }
+
+/* =========================================
+   7. RODAPÉ REFINADO
+   ========================================= */
+.newsletter-section { background-color: var(--primary-red); color: white; padding: 40px 0; text-align: center; margin-top: 60px; }
+.news-content h3 { font-size: 22px; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; }
+.news-content p { font-size: 14px; margin-bottom: 20px; opacity: 0.9; }
+.news-form { display: flex; justify-content: center; gap: 10px; max-width: 500px; margin: 0 auto; }
+.news-form input { flex: 1; padding: 12px 20px; border-radius: 4px; border: none; outline: none; }
+.news-form button { background-color: #111; color: white; font-weight: 800; text-transform: uppercase; padding: 12px 30px; border: none; border-radius: 4px; cursor: pointer; transition: 0.3s; }
+.news-form button:hover { background-color: #333; transform: translateY(-2px); }
+
+.main-footer { background-color: #fff; color: #333; padding: 60px 0 20px; border-top: 1px solid #eee; }
+.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 50px; }
+
+.brand-col p { font-size: 13px; color: #666; line-height: 1.6; margin: 20px 0; max-width: 250px; }
+.social-icons { display: flex; gap: 10px; }
+.social-btn { width: 35px; height: 35px; background-color: #f0f0f0; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #555; transition: 0.3s; font-size: 14px; }
+.social-btn:hover { background-color: var(--primary-red); color: white; }
+
+.footer-title { font-size: 14px; font-weight: 800; text-transform: uppercase; margin-bottom: 20px; color: #111; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a { font-size: 13px; color: #666; transition: 0.2s; }
+.footer-links a:hover { color: var(--primary-red); padding-left: 5px; }
+
+.payment-methods { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 25px; color: #999; font-size: 24px; }
+.security-badge { display: flex; align-items: center; gap: 10px; border: 1px solid #ddd; padding: 10px; border-radius: 6px; display: inline-flex; }
+.security-badge i { color: #28a745; font-size: 20px; }
+.security-text strong { display: block; font-size: 12px; color: #333; }
+.security-text span { font-size: 11px; color: #666; }
+
+.footer-bottom { border-top: 1px solid #eee; padding-top: 25px; text-align: center; font-size: 12px; color: #999; }
+
+/* =========================================
+   8. TUTORIAL / POPOVER (REFINADO PARA HOME)
+   ========================================= */
+.tutorial-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7); z-index: 10000; opacity: 0; 
+    transition: opacity 0.3s; pointer-events: none; cursor: pointer;
+}
+.tutorial-overlay.visible { opacity: 1; pointer-events: auto; }
+
+.tutorial-popover {
+    position: absolute; 
+    z-index: 10002; /* Acima do menu e do slider */
+    background: white; 
+    width: 280px; 
+    padding: 20px; 
+    border-radius: 12px; 
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4); 
+    
+    /* Estado inicial */
+    opacity: 0; 
+    transform: translateY(15px); 
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    pointer-events: none; 
+    
+    /* Borda superior vermelha */
+    border-top: 4px solid #e52d27; 
+}
+
+.tutorial-popover.visible { 
+    opacity: 1; 
+    transform: translateY(0); 
+    pointer-events: auto; 
+}
+
+/* Seta dinâmica */
+.tutorial-arrow {
+    position: absolute; 
+    top: -12px; 
+    width: 0; height: 0; 
+    border-left: 8px solid transparent; 
+    border-right: 8px solid transparent; 
+    border-bottom: 8px solid #e52d27; 
+    left: 20px; /* Ajustado via JS */
+    transition: left 0.3s; 
+}
+
+/* Cabeçalho do Balão */
+.popover-header { 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    margin-bottom: 10px; 
+}
+
+.popover-title-group { display: flex; align-items: center; gap: 8px; }
+.popover-badge { background: #e52d27; color: white; font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; }
+.popover-title { color: #333; font-weight: 800; font-size: 14px; margin: 0; }
+
+.popover-text { font-size: 13px; color: #666; line-height: 1.5; margin-bottom: 15px; }
+
+/* Botão de Fechar (X) */
+.popover-close { 
+    border: none; background: none; color: #999; 
+    cursor: pointer; font-size: 18px; line-height: 1; 
+    padding: 0; margin-left: 10px;
+}
+.popover-close:hover { color: #333; }
+
+/* Botão de Ação ("Vamos lá!") */
+.popover-action-btn {
+    display: block;
+    width: 100%;
+    background-color: #e52d27;
+    color: white;
+    border: none;
+    padding: 10px 0;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.2s, transform 0.2s;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(229, 45, 39, 0.2);
+}
+
+.popover-action-btn:hover {
+    background-color: #d42620;
+    transform: translateY(-1px);
+}
+/* =========================================
+   9. RESPONSIVIDADE (MOBILE)
+   ========================================= */
+@media (max-width: 900px) {
+    /* Header & Menu */
+    .header-top { display: none; }
+    .header-content { flex-direction: row; flex-wrap: wrap; padding: 0 10px; }
+    .mobile-menu-btn { display: block; order: 1; }
+    .logo { order: 2; margin: 0 auto; }
+    .header-icons { order: 3; gap: 15px; }
+    .header-icons span { display: none; } /* Ícones sem texto */
+    .search-container { order: 4; width: 100%; max-width: 100%; margin-top: 10px; }
+    .logo-img { height: 40px; }
+
+    /* Nav Mobile (Lateral) */
+    .nav-bar { display: none; position: fixed; top: 0; left: 0; width: 80%; height: 100vh; background: white; z-index: 1000; padding: 20px; box-shadow: 2px 0 10px rgba(0,0,0,0.2); overflow-y: auto; }
+    .nav-bar.active { display: block; animation: slideRight 0.3s ease; }
+    @keyframes slideRight { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+    .nav-list { flex-direction: column; gap: 0; padding: 0; }
+    .nav-link { display: block; padding: 15px; border-bottom: 1px solid #eee; width: 100%; }
+    .dropdown:hover .dropdown-content { position: static; box-shadow: none; border: none; padding-left: 20px; background: #f9f9f9; display: block; }
+
+    /* Slider Mobile */
+    .hero-slider { height: 400px; }
+    .hero-content { margin-left: 20px; max-width: 90%; text-align: left; }
+    .hero-content h1 { font-size: 2.5rem; }
+
+    /* Grids Mobile */
+    .cat-grid { gap: 20px; overflow-x: auto; padding: 10px; justify-content: flex-start; scroll-behavior: smooth; }
+    .cat-item { min-width: 100px; flex-shrink: 0; }
+    .flash-grid, .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .img-wrapper { height: 160px; padding: 10px; }
+    .p-info h3 { font-size: 13px; height: 36px; }
+    .btn-card-action { opacity: 1; transform: translateY(0); display: block; }
+
+    /* Footer Mobile */
+    .footer-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+    .social-icons, .payment-methods, .security-badge { justify-content: center; }
+    .news-form { flex-direction: column; }
+    .news-form button { width: 100%; }
+}

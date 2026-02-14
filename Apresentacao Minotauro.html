@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minotauro - Apresentação Final</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+/* BRAND CONFIGURATION */
+:root {
+    --brand-red: #E31C23;       
+    --brand-dark: #0f0f0f;      
+    --brand-gray: #1e1e1e;      
+    --text-white: #ffffff;
+    --text-gray: #b0b0b0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* COMPORTAMENTO DE APRESENTAÇÃO (SCROLL SNAP) */
+html, body {
+    height: 100vh;
+    margin: 0;
+    overflow: hidden; /* Esconde a barra de rolagem lateral */
+    background-color: #000;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Container principal que permite o scroll entre slides */
+.presentation-wrapper {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory; /* Força o alinhamento */
+    scroll-behavior: smooth;
+}
+
+/* SLIDE CONTAINER */
+.slide-container {
+  background-color: var(--brand-dark);
+  border-top: 5px solid var(--brand-red);
+  /* Ajuste para caber na tela cheia */
+  height: 100vh; 
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  
+  display: flex;
+  flex-direction: column;
+  padding: 40px 60px; /* Reduzi um pouco o padding para garantir que caiba */
+  position: relative;
+  overflow: hidden;
+  
+  /* Essencial para o efeito de PowerPoint */
+  scroll-snap-align: start; 
+}
+
+/* DECORATIVE ELEMENTS */
+.slide-container::before {
+    content: 'MINOTAURO';
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    font-size: 15vw; /* Responsivo */
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.03);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.slide-number {
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    color: var(--brand-red);
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* TYPOGRAPHY */
+h1, h2, h3 {
+  font-family: 'Chakra Petch', sans-serif;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+h1 {
+  font-size: 5rem;
+  color: var(--text-white);
+  line-height: 0.9;
+  font-weight: 700;
+}
+
+h1 span {
+    color: var(--brand-red);
+}
+
+h2 {
+    font-size: 3rem;
+    color: var(--text-white);
+    margin-bottom: 30px;
+    border-left: 8px solid var(--brand-red);
+    padding-left: 20px;
+    letter-spacing: 1px;
+}
+
+p, li {
+    font-size: 1.5rem;
+    color: var(--text-gray);
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+
+strong {
+    color: var(--text-white);
+    font-weight: 900;
+}
+
+/* LAYOUTS */
+.content-wrapper {
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza verticalmente o conteúdo */
+}
+
+.center-content {
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    height: 100%;
+    align-items: center;
+}
+
+/* INTERACTIVE CARDS */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    width: 100%;
+}
+
+.card {
+    background: var(--brand-gray);
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    border-left: 3px solid transparent;
+    transition: all 0.3s ease; /* Suaviza o efeito */
+    cursor: default;
+}
+
+/* EFEITO DE HOVER SOLICITADO */
+.card:hover {
+    border-left: 3px solid var(--brand-red);
+    transform: translateY(-8px); /* Levanta o card */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Sombra para dar profundidade */
+    background: #252525; /* Clareia levemente o fundo */
+}
+
+.card h3 {
+    color: var(--brand-red);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.icon-circle {
+    width: 70px;
+    height: 70px;
+    background: var(--brand-red);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 0 20px rgba(227, 28, 35, 0.4);
+}
+
+/* EFEITOS ESPECIAIS NA LISTA (Marketing) */
+.strategy-list li {
+    padding: 15px;
+    border-left: 4px solid transparent;
+    transition: all 0.3s;
+    border-radius: 0 8px 8px 0;
+}
+
+.strategy-list li:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 4px solid var(--brand-red);
+    padding-left: 25px; /* Move o texto para a direita */
+    color: white;
+}
+
+/* DEMO SLIDE SPECIAL */
+.demo-slide {
+    background: radial-gradient(circle at center, #3d0000 0%, #000000 100%);
+    text-align: center;
+}
+
+.demo-btn {
+    background: transparent;
+    border: 4px solid var(--brand-red);
+    color: var(--text-white);
+    padding: 20px 50px;
+    font-size: 2.5rem;
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 40px;
+    border-radius: 60px;
+    display: inline-block;
+    box-shadow: 0 0 30px rgba(227, 28, 35, 0.2);
+    animation: pulse 2s infinite;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+.demo-btn:hover {
+    background: var(--brand-red);
+    box-shadow: 0 0 50px rgba(227, 28, 35, 0.8);
+    transform: scale(1.05);
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(227, 28, 35, 0.4); }
+    70% { box-shadow: 0 0 0 20px rgba(227, 28, 35, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(227, 28, 35, 0); }
+}
+
+/* TABLE HOVER EFFECTS */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
+th {
+    text-align: left;
+    background-color: var(--brand-red);
+    color: white;
+    padding: 20px;
+    font-size: 1.4rem;
+    font-family: 'Chakra Petch', sans-serif;
+    text-transform: uppercase;
+}
+td {
+    padding: 20px;
+    border-bottom: 1px solid #333;
+    color: var(--text-gray);
+    font-size: 1.2rem;
+    font-weight: 300;
+    transition: all 0.2s;
+}
+tr:last-child td {
+    border-bottom: none;
+}
+
+/* Highlight na linha da tabela ao passar o mouse */
+tr:hover td {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+    </style>
+</head>
+<body>
+
+<div class="presentation-wrapper" id="presentation">
+
+    <!-- SLIDE 1: CAPA -->
+    <div class="slide-container" id="slide-1">
+        <div class="content-wrapper center-content">
+            <h3 style="color: var(--brand-red); margin-bottom: 15px; font-weight: 700; letter-spacing: 2px;">TECH CHALLENGE FASE 4</h3>
+            <h1>DECISÃO É<br><span>PERFORMANCE</span></h1>
+            <p style="font-size: 2.2rem; color: white; margin-top: 20px; max-width: 800px;">Acabando com a Incerteza no Varejo Esportivo.</p>
+            <div style="width: 150px; height: 8px; background: var(--brand-red); margin-top: 40px;"></div>
+            <p style="margin-top: 30px; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 3px; color: #666;">Do Zero ao Scale-Up</p>
+        </div>
+        <div class="slide-number">01</div>
+    </div>
+
+    <!-- SLIDE 2: O PROBLEMA & SOLUÇÃO -->
+    <div class="slide-container" id="slide-2">
+        <div class="content-wrapper">
+            <h2>O INIMIGO: A PARALISIA DA ESCOLHA</h2>
+            <div class="two-col">
+                <div>
+                    <h3 style="color: white; margin-bottom: 25px; font-size: 2rem;">A Dor do Cliente</h3>
+                    <p>O atleta entra para comprar e se depara com um <strong>Abismo Técnico</strong>.</p>
+                    <p>"Essa tecnologia vale R$ 200 a mais? Vai melhorar meu jogo?"</p>
+                    <p style="color: var(--brand-red); font-weight: 700; font-size: 1.8rem;">Resultado: Dúvida = Venda Perdida.</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--brand-red); margin-bottom: 25px;">A Nossa Arma</h3>
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                        <div class="card">
+                            <p><i class="fa-solid fa-crosshairs" style="color: var(--brand-red); margin-right: 15px;"></i><strong>TRADUZIR:</strong> Especificação vira Benefício Real.</p>
+                        </div>
+                        <div class="card">
+                            <p><i class="fa-solid fa-users" style="color: var(--brand-red); margin-right: 15px;"></i><strong>VALIDAR:</strong> O "VAR" da compra esportiva.</p>
+                        </div>
+                        <div class="card">
+                            <p><i class="fa-solid fa-mobile-screen" style="color: var(--brand-red); margin-right: 15px;"></i><strong>CONECTAR:</strong> Omnichannel de verdade.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">02</div>
+    </div>
+
+    <!-- SLIDE 3: SEPARADOR PARA DEMONSTRAÇÃO -->
+    <div class="slide-container demo-slide" id="slide-3">
+        <div class="content-wrapper center-content" style="align-items: center;">
+            <div class="icon-circle" style="width: 120px; height: 120px; font-size: 50px; background: white; color: var(--brand-red);">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <h1 style="font-size: 4.5rem; margin-top: 30px;">HORA DO SHOW</h1>
+            <p style="font-size: 1.5rem; color: #ccc;">Chega de teoria. Vamos ver a máquina rodando.</p>
+            
+            <!-- Botão agora é um link ancora que pode levar pro seu site se quiser, ou apenas figurativo -->
+            <a href="#" class="demo-btn">
+                <i class="fa-solid fa-desktop" style="margin-right: 15px;"></i> ACESSAR DEMO
+            </a>
+            
+            <p style="margin-top: 20px; font-size: 1rem; color: #666;">(Mude para a aba do Site agora)</p>
+        </div>
+        <div class="slide-number">03</div>
+    </div>
+
+    <!-- SLIDE 4: ESTRATÉGIA PLG -->
+    <div class="slide-container" id="slide-4">
+        <div class="content-wrapper">
+            <h2>O MOTOR DE CRESCIMENTO INFINITO</h2>
+            <p style="margin-bottom: 40px;">Não é apenas uma loja. É um ecossistema autossustentável:</p>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="icon-circle"><i class="fa-solid fa-magnet"></i></div>
+                    <h3>1. ATRAÇÃO VIRAL</h3>
+                    <p>Conteúdo de alta intenção. O usuário não busca "tênis", busca <strong>"Qual tênis me faz correr mais?"</strong></p>
+                </div>
+                <div class="card">
+                    <div class="icon-circle"><i class="fa-solid fa-rocket"></i></div>
+                    <h3>2. ATIVAÇÃO IMEDIATA</h3>
+                    <p>Zero atrito. Onboarding instantâneo. <strong>Entregamos valor nos primeiros 10 segundos</strong>.</p>
+                </div>
+                <div class="card">
+                    <div class="icon-circle"><i class="fa-solid fa-repeat"></i></div>
+                    <h3>3. VÍCIO POSITIVO</h3>
+                    <p>Gamificação real. Cashback por qualidade cria um <strong>Loop Viral</strong> de conteúdo rico.</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">04</div>
+    </div>
+
+    <!-- SLIDE 5: MARKETING & AQUISIÇÃO -->
+    <div class="slide-container" id="slide-5">
+        <div class="content-wrapper">
+            <h2>DOMINANDO O MERCADO</h2>
+            <div class="two-col">
+                <div>
+                    <h3 style="margin-bottom: 20px;">Estratégia de Ataque</h3>
+                    <!-- Lista com efeito de hover adicionado -->
+                    <ul class="strategy-list" style="list-style: none; padding: 0;">
+                        <li>
+                            <strong>SEO DE INTENÇÃO:</strong> Dominamos as keywords de comparação ("X vs Y").
+                        </li>
+                        <li>
+                            <strong>INFLUENCERS TÉCNICOS:</strong> Não queremos "likes", queremos autoridade.
+                        </li>
+                        <li>
+                            <strong>E-MAIL MAP:</strong> O pós-venda que vira pré-venda da próxima compra.
+                        </li>
+                    </ul>
+                </div>
+                <div class="card" style="border: 2px solid var(--brand-red); background: rgba(227, 28, 35, 0.05);">
+                    <h3 style="color: white;"><i class="fa-solid fa-flask" style="color: var(--brand-red); margin-right: 10px;"></i> RESULTADOS (LOW-CODE)</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Aposta</th>
+                                <th>Vitória</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Focar em Benefício</td>
+                                <td style="color: #4ade80; font-weight: 700;">+15% Conversão</td>
+                            </tr>
+                            <tr>
+                                <td>Cashback Visual</td>
+                                <td style="color: #4ade80; font-weight: 700;">4x Mais Fotos</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">05</div>
+    </div>
+
+    <!-- SLIDE 6: CONCLUSÃO -->
+    <div class="slide-container" id="slide-6">
+        <div class="content-wrapper">
+            <h2>MODELO DE NEGÓCIO VENCEDOR</h2>
+            <div class="two-col">
+                <div>
+                    <div class="card">
+                        <h3><i class="fa-solid fa-trophy"></i> POSICIONAMENTO</h3>
+                        <p>"De atleta para atleta".</p>
+                        <p style="font-size: 2rem; color: white; margin-top: 15px; font-weight: 700;">"MINOTAURO: Testado por ídolos, Validado por VOCÊ."</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="card">
+                        <h3><i class="fa-solid fa-hand-holding-dollar"></i> MONETIZAÇÃO</h3>
+                        <p><strong>B2B:</strong> O Varejo ganha conversão (SaaS).</p>
+                        <p><strong>B2C:</strong> O Atleta ganha performance (Cashback).</p>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: auto; text-align: center;">
+                <h1 style="font-size: 4rem;">O JOGO VIROU.</h1>
+                <p style="color: var(--brand-red); font-weight: 700; letter-spacing: 2px; font-size: 1.5rem;">MINOTAURO.APP</p>
+            </div>
+        </div>
+        <div class="slide-number">06</div>
+    </div>
+
+</div>
+
+<script>
+    // Script simples para garantir foco e navegação por teclado
+    document.addEventListener('keydown', (e) => {
+        const wrapper = document.getElementById('presentation');
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+            e.preventDefault();
+            wrapper.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+        } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+            e.preventDefault();
+            wrapper.scrollBy({ top: -window.innerHeight, behavior: 'smooth' });
+        }
+    });
+</script>
+
+</body>
+</html>

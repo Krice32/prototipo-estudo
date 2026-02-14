@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalhes do Produto - Minotauro</title>
+    <link rel="stylesheet" href="home.css" />
+    <link rel="stylesheet" href="produto.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    
+ <header class="header">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-links">
+                    <span>📞 Acessibilidade</span>
+                    <span>📝 Blog | Arena Minotauro</span>
+                </div>
+                <div class="header-links">
+                    <span>💬 Atendimento</span>
+                </div>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="container header-content">
+                <button class="mobile-menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+
+                <a href="home.html" class="logo">
+                    <img src="imagens/Minotauro 3.PNG" alt="Minotauro" class="logo-img">
+                </a>
+                
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="o que você procura?">
+                    <button class="search-btn">🔍</button>
+                </div>
+
+                <div class="header-icons">
+                    <a href="#" class="header-item"><i class="fas fa-user"></i> <span>Entrar</span></a>
+                    <a href="#" class="header-item"><i class="fas fa-heart"></i> <span>Favoritos</span></a>
+                    <a href="#" class="header-item"><i class="fas fa-shopping-cart"></i> <span id="cart-count" class="cart-badge">0</span><span>Carrinho</span></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav-bar" id="navBar">
+        <div class="container">
+            <ul class="nav-list">
+                <li class="dropdown">
+                    <a href="#" class="nav-link">Esportes ▾</a>
+                    <div class="dropdown-content">
+                        <a href="#"><i class="fas fa-running"></i> Corrida</a>
+                        <a href="#"><i class="far fa-futbol"></i> Futebol</a>
+                        <a href="#"><i class="fas fa-dumbbell"></i> Academia</a>
+                        <a href="#"><i class="fas fa-basketball-ball"></i> Basquete</a>
+                        <a href="#"><i class="fas fa-swimmer"></i> Natação</a>
+                        <a href="#"><i class="fas fa-table-tennis"></i> Tênis</a>
+                    </div>
+                </li>
+                <li><a href="#" class="nav-link">Homens</a></li>
+                <li><a href="#" class="nav-link">Mulheres</a></li>
+                <li><a href="#" class="nav-link">Crianças</a></li>
+                <li><a href="#" class="nav-link">Calçados</a></li>
+                <li><a href="#" class="nav-link">Roupas</a></li>
+                
+                <li>
+                    <a href="index.html" id="btn-comparador-menu" class="nav-link link-dourado-brilhante">
+                        ⚡ Comparador IA
+                    </a>
+                </li>
+                
+                <li><a href="#" class="nav-link red-text">Nike</a></li>
+                <li><a href="#" class="nav-link red-text">Outlet</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <main class="product-container container">
+        
+        <div class="breadcrumb">
+            Home > Esportes > <span id="bread-categoria">Categoria</span> > <span id="bread-nome">Produto</span>
+        </div>
+
+        <div class="product-grid">
+            
+            <div class="gallery-column">
+                <div class="thumbnail selected"><img id="thumb-1" src="" alt=""></div>
+                <div class="thumbnail"><img id="thumb-2" src="" alt=""></div>
+                <div class="thumbnail"><img id="thumb-3" src="" alt=""></div>
+                <div class="thumbnail"><img id="thumb-4" src="" alt=""></div>
+            </div>
+
+            <div class="main-image-column">
+                <img id="main-img" src="" alt="Produto Principal">
+            </div>
+
+            <div class="buy-box-column">
+                
+                <h1 id="detalhe-nome" class="product-title">Carregando...</h1>
+                
+                <div class="product-rating">
+                    <span class="stars">★★★★★</span>
+                    <span class="rating-text">(Ver avaliações)</span>
+                    <span class="share-btn">🔗 Compartilhar</span>
+                </div>
+
+                <div class="price-block">
+                    <span class="old-price" id="detalhe-preco-antigo"></span>
+                    <div class="current-price-row">
+                        <span class="currency">R$</span>
+                        <span class="value" id="detalhe-preco">0,00</span>
+                        <span class="payment-method">no Pix</span>
+                        <span class="discount-tag-pdp">-5%</span>
+                    </div>
+                    <div class="installments">ou até 10x sem juros no cartão</div>
+                </div>
+
+                <div class="selector-block">
+                    <label>Cor do produto: <strong id="detalhe-cor">Original</strong></label>
+                    <div class="color-options">
+                        <div class="color-circle selected" id="cor-preview"></div>
+                    </div>
+                </div>
+
+                <div class="selector-block">
+                    <label>Tamanho:</label>
+                    <div class="size-options">
+                        <button class="size-btn">38</button>
+                        <button class="size-btn">39</button>
+                        <button class="size-btn selected">40</button>
+                        <button class="size-btn">41</button>
+                        <button class="size-btn">42</button>
+                    </div>
+                    <a href="#" class="size-guide">📏 Tabela de medidas</a>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-buy-now">Comprar agora</button>
+                    <button class="btn-add-cart">Adicionar ao carrinho</button>
+                    
+                    <button id="btn-comparar-auto" class="btn-compare-pdp">
+                        ⚖️ Comparar este produto
+                    </button>
+                </div>
+
+                <div class="shipping-calculator">
+                    <label>Consulte o frete</label>
+                    <div class="shipping-input-group">
+                        <input type="text" id="cep-input" placeholder="Digite o CEP" maxlength="9">
+                        <button id="btn-calc-frete">Calcular</button>
+                    </div>
+                    <div id="frete-resultado" class="frete-msg"></div>
+                    
+                    <a href="#" class="no-cep">Não sei meu CEP</a>
+                </div>
+
+                <div class="seller-info">
+                    <p>Vendido e entregue por <strong>Minotauro</strong></p>
+                    <div class="trust-badges">
+                        <span>🛡️ Compra Segura</span>
+                        <span>🔄 Troca Grátis</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <section class="description-section">
+            <h2>Informações do Produto</h2>
+            <div class="description-content">
+                <div class="ia-highlight-box">
+                    <h3>✨ Análise da Inteligência Artificial</h3>
+                    <p id="detalhe-ia-desc">Carregando análise...</p>
+                </div>
+                <div class="tech-specs" id="detalhe-specs">
+                    </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>Institucional</h4>
+                    <ul>
+                        <li><a href="#">Sobre a Minotauro</a></li>
+                        <li><a href="#">Trabalhe Conosco</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Ajuda</h4>
+                    <ul>
+                        <li><a href="#">Trocas e Devoluções</a></li>
+                        <li><a href="#">Prazos de Entrega</a></li>
+                        <li><a href="#">Meus Pedidos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Atendimento</h4>
+                    <ul>
+                        <li><a href="#">Fale Conosco</a></li>
+                        <li><a href="#">WhatsApp: (11) 9999-9999</a></li>
+                        <li><a href="#">Seg a Sex: 9h às 18h</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                Minotauro Sports © 2026 - Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if(typeof carregarPaginaProduto === 'function') {
+                carregarPaginaProduto();
+            }
+        });
+    </script>
+  </body>
+</html>
