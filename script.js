@@ -136,6 +136,49 @@ const produtosExemplo = [
         featured: false,
         resumoIA: "✨ <strong>Resumo das Opiniões:</strong> Estilo inconfundível com retorno de energia explosivo. O cabedal veste como uma meia, sem apertar. <br><em>💡 Dica: O solado tem aderência fantástica no asfalto. Para manter essa performance por anos, recomenda-se evitar terrenos muito ásperos ou trilhas de terra batida.</em>"
     },
+    // --- LINHA CASUAL / LIFESTYLE ---
+    { 
+        id: 13, 
+        nome: "Tênis Nike Court Vision Low", 
+        marca: "Nike", 
+        categoria: "calcados",
+        preco: "R$ 399,99", 
+        precoOriginal: "R$ 449,99", 
+        nota: 4.4, 
+        avaliacoes: 512,
+        imagem: "imagens/tenis nike court vision.png", // Substitua pelo nome do seu arquivo
+        esporte: "Casual",
+        genero: "Masculino",
+        cor: "Branco/Preto",
+        material: "Couro Sintético",
+        peso: "350g",
+        tecnologia: "Cupsole de Borracha",
+        fecho: "Cadarço",
+        tamanhos: "38-44",
+        featured: true,
+        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> Ótimo custo-benefício para o dia a dia. Entrega a estética clássica do basquete dos anos 80 por um preço bem mais acessível. <br><em>💡 Dica: Por ser de material sintético de entrada, ele pode ser um pouco rígido nos primeiros dias de uso. É o tênis perfeito para 'bater' no asfalto sem dó.</em>"
+    },
+    { 
+        id: 14, 
+        nome: "Tênis Nike Dunk Low Retro", 
+        marca: "Nike", 
+        categoria: "calcados",
+        preco: "R$ 899,99", 
+        precoOriginal: "R$ 1099,99", 
+        nota: 4.9, 
+        avaliacoes: 840,
+        imagem: "imagens/tenis nike dunk low.png", // Substitua pelo nome do seu arquivo
+        esporte: "Casual/Skate",
+        genero: "Masculino",
+        cor: "Preto/Branco (Panda)",
+        material: "Couro Legítimo",
+        peso: "380g",
+        tecnologia: "Entressola em Espuma",
+        fecho: "Cadarço",
+        tamanhos: "38-44",
+        featured: true,
+        resumoIA: "✨ <strong>Resumo das Opiniões:</strong> Um ícone absoluto da cultura sneaker. O acabamento em couro natural faz total diferença no toque, conforto e na forma como o tênis envelhece. <br><em>💡 Dica: Neste modelo você paga pelo status e pela herança da marca. Super versátil para qualquer look, mas exige hidratação e cuidado na limpeza por ser couro premium.</em>"
+    },
     // --- BOLAS ---
     { 
         id: 7, 
@@ -1200,4 +1243,14 @@ function verificarSessaoHeader() {
             headerIcons.appendChild(btnLogout);
         }
     } 
+
+  
+}
+
+  /* =========================================
+   10. MENU MOBILE (HAMBÚRGUER)
+   ========================================= */
+function toggleMenu() { 
+    const nav = document.getElementById('navBar');
+    if (nav) nav.classList.toggle('active'); 
 }

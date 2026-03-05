@@ -5,7 +5,7 @@ const usuariosDB = {
     // NÍVEL 1: ENTUSIASTA
     1: {
         nome: "Lucas Silva",
-        avatar: "imagens/avatar-cent-lvl1.png",
+        avatar: "imagens/Lucas.jpg",
         avatarNivel: "imagens/lvl1.png",
         membroDesde: "2025",
         nivelAtual: "ENTUSIASTA",
@@ -29,7 +29,7 @@ const usuariosDB = {
     // NÍVEL 2: ATLETA (Fernanda)
     2: {
         nome: "Fernanda Costa",
-        avatar: "imagens/avatar-cent-lvl2.png",
+        avatar: "imagens/Fernanda.jpg",
         avatarNivel: "imagens/lvl2.png",
         membroDesde: "2024",
         nivelAtual: "ATLETA",
@@ -63,8 +63,8 @@ const usuariosDB = {
 
     // NÍVEL 3: ESPECIALISTA (Roberto) - TURBINADO & SEM VIP
     3: {
-        nome: "Roberto 'Beto' Almeida",
-        avatar: "imagens/avatar-cent-lvl3.png",
+        nome: "Roberto Almeida",
+        avatar: "imagens/Roberto.jpg",
         avatarNivel: "imagens/lvl3.png",
         membroDesde: "2022",
         
@@ -262,4 +262,12 @@ function fazerLogout() {
     localStorage.removeItem("minotauro_user_id");
     localStorage.removeItem("minotauro_user_name");
     window.location.href = "login.html";
+}
+
+/* =========================================
+   MENU MOBILE (HAMBÚRGUER)
+   ========================================= */
+function toggleMenu() { 
+    const nav = document.getElementById('navBar');
+    if (nav) nav.classList.toggle('active'); 
 }

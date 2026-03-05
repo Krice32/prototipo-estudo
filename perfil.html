@@ -9,26 +9,75 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-
-    <header class="header">
+<header class="header">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-links">
+                    <span>📞 Acessibilidade</span>
+                    <span>📝 Blog | Arena Minotauro</span>
+                </div>
+                <div class="header-links">
+                    <span>💬 Atendimento</span>
+                </div>
+            </div>
+        </div>
         <div class="header-main">
             <div class="container header-content">
-                <a href="home.html" class="logo"><img src="imagens/Minotauro 3.PNG" alt="Minotauro" class="logo-img"></a>
-                <div class="search-container"><input type="text" class="search-input" placeholder="Buscar meus pedidos..."><button class="search-btn">🔍</button></div>
-                <div class="header-icons">
-                    <a href="#" onclick="fazerLogout()" class="header-item"><i class="fas fa-sign-out-alt"></i> <span>Sair</span></a>
+                
+                <button class="mobile-menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+
+                <a href="home.html" class="logo">
+                    <img src="imagens/Minotauro 3.PNG" alt="Minotauro" class="logo-img">
+                </a>
+                
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="o que você procura?">
+                    <button class="search-btn">🔍</button>
                 </div>
+
+                <div class="header-icons">
+                    <a href="login.html" id="btn-login-header" class="header-item">
+                        <i class="fas fa-user"></i> <span class="icon-label">Entrar</span>
+                    </a>
+                    <a href="#" class="header-item"><i class="fas fa-heart"></i> <span class="icon-label">Favoritos</span></a>
+                    <a href="#" class="header-item cart-item-wrapper">
+                        <i class="fas fa-shopping-cart"></i> 
+                        <span id="cart-count" class="cart-badge" style="display:none">0</span>
+                        <span class="icon-label">Carrinho</span>
+                    </a>
+                </div>
+
             </div>
         </div>
     </header>
 
-    <nav class="nav-bar" id="navBar">
+       <nav class="nav-bar" id="navBar">
         <div class="container">
             <ul class="nav-list">
-                <li class="dropdown"><a href="#" class="nav-link">Esportes ▾</a></li>
+              <li class="dropdown">
+                    <a href="#" class="nav-link">Esportes ▾</a>
+                    <div class="dropdown-content">
+                        <a href="#"><i class="fas fa-running"></i> Corrida</a>
+                        <a href="#"><i class="far fa-futbol"></i> Futebol</a>
+                        <a href="#"><i class="fas fa-dumbbell"></i> Academia</a>
+                        <a href="#"><i class="fas fa-basketball-ball"></i> Basquete</a>
+                        <a href="#"><i class="fas fa-swimmer"></i> Natação</a>
+                        <a href="#"><i class="fas fa-table-tennis"></i> Tênis</a>
+                    </div>
+                </li>
                 <li><a href="#" class="nav-link">Homens</a></li>
                 <li><a href="#" class="nav-link">Mulheres</a></li>
-                <li><a href="#" class="nav-link link-dourado-brilhante">⚡ Comparador IA</a></li>
+                <li><a href="#" class="nav-link">Crianças</a></li>
+                <li><a href="#" class="nav-link">Calçados</a></li>
+                <li><a href="#" class="nav-link">Roupas</a></li>
+                
+                <li>
+                    <a href="index.html" id="btn-comparador-menu" class="nav-link link-dourado-brilhante">
+                        ⚡ Comparador IA
+                    </a>
+                </li>
+                
+                <li><a href="#" class="nav-link red-text">Nike</a></li>
                 <li><a href="#" class="nav-link red-text">Outlet</a></li>
             </ul>
         </div>
