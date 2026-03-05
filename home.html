@@ -363,6 +363,46 @@
             },1000);
         }
         startTimer();
+
+        /* =========================================
+   MENU MOBILE COM PELÍCULA ESCURA (OVERLAY)
+   ========================================= */
+function toggleMenu() {
+    const nav = document.getElementById('navBar');
+    if (!nav) return;
+
+    // 1. Abre ou fecha o menu
+    nav.classList.toggle('active');
+
+    // 2. Procura se a película escura já existe
+    let overlay = document.getElementById('menu-overlay');
+
+    // 3. Se o menu acabou de ser aberto
+    if (nav.classList.contains('active')) {
+        // Se a película não existe, cria ela do zero
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'menu-overlay';
+        
+            overlay.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.6); z-index: 990; cursor: pointer;';
+            document.body.appendChild(overlay);
+
+       
+            overlay.addEventListener('click', function() {
+                nav.classList.remove('active');
+                overlay.style.display = 'none';
+            });
+        } else {
+        
+            overlay.style.display = 'block';
+        }
+    } 
+    else {
+        if (overlay) {
+            overlay.style.display = 'none';
+        }
+    }
+}
     </script>
 </body>
 </html>

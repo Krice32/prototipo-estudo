@@ -265,9 +265,45 @@ function fazerLogout() {
 }
 
 /* =========================================
-   MENU MOBILE (HAMBÚRGUER)
+   MENU MOBILE COM PELÍCULA ESCURA (OVERLAY)
    ========================================= */
-function toggleMenu() { 
+function toggleMenu() {
     const nav = document.getElementById('navBar');
-    if (nav) nav.classList.toggle('active'); 
+    if (!nav) return;
+
+    // 1. Abre ou fecha o menu
+    nav.classList.toggle('active');
+
+    // 2. Procura se a película escura já existe
+    let overlay = document.getElementById('menu-overlay');
+
+    // 3. Se o menu acabou de ser aberto
+    if (nav.classList.contains('active')) {
+        // Se a película não existe, cria ela do zero
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'menu-overlay';
+            
+            // Estilo da película (Cobre a tela toda, cor preta com 60% de transparência)
+            overlay.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.6); z-index: 990; cursor: pointer;';
+            
+            // Adiciona a película no site
+            document.body.appendChild(overlay);
+
+            // A MÁGICA: Clicar na película escura fecha tudo!
+            overlay.addEventListener('click', function() {
+                nav.classList.remove('active');
+                overlay.style.display = 'none';
+            });
+        } else {
+            // Se já existe, só mostra de novo
+            overlay.style.display = 'block';
+        }
+    } 
+    // 4. Se o menu fechou pelo botão de hambúrguer, esconde a película
+    else {
+        if (overlay) {
+            overlay.style.display = 'none';
+        }
+    }
 }
